@@ -7,10 +7,12 @@
 #include "ADC.h"
 #include "MOTOR.h"
 #include "PID.h"
-
+#include "BEEP.h"
 void app_main(void)
 {
     LED_Init();
+    BEEP_Init();
+
 
     while(1)
     {
