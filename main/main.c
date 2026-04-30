@@ -14,7 +14,10 @@ void app_main(void)
 {
     LED_Init();
     BEEP_Init();
+    ADC_Init();
     Task_Init();
+
+    vTaskDelay(pdMS_TO_TICKS(1000)); // 等待系统稳定
 
     while(1)
     {

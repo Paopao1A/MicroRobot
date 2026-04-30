@@ -28,11 +28,19 @@ void Task_BeepControl_Init(void)
 
 static void Task_BeepControl(void* pvParameters)
 {
-    
+    float sum_voltage = 0.0f;
+    float average_voltage = 0.0f;
     while(1)
     {
-        ADC_UpdateVoltageData();
-        if(Voltage_Data < 6.8f)
+        sum_voltage = 0.0f;
+        for(uint8_t count = 0;count < 10;count++)
+        {
+            ADC_UpdateVoltageData();
+            sum_voltage += Voltage_Data;//累加10次电压数据
+        }
+        average_voltage = sum_voltage / 10.0f;
+
+        if(average_voltage < 7.0f && average_voltage > 6.0f)//防止检测到未开启电池的情况
         {
             BEEP_on();
         }
@@ -40,6 +48,7 @@ static void Task_BeepControl(void* pvParameters)
         {
             BEEP_off();
         }
-        vTaskDelay(pdMS_TO_TICKS(100));
+        printf("Average_Voltage: %f\n\r", average_voltage);
+        vTaskDelay(pdMS_TO_TICKS(30000));//每30s检查一次电压
     }
 }
