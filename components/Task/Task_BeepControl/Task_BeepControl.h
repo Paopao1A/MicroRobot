@@ -2,6 +2,5 @@
 #define __TASK_BEEP_CONTROL_H__
 
 void Task_BeepControl_Init(void);
-void Task_BeepControl(void* pvParameters);
 
 #endif

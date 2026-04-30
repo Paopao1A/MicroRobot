@@ -7,6 +7,7 @@
 #define TASK_BEEP_CONTROL_STACK_SIZE    2048
 #define TASK_BEEP_CONTROL_PRIORITY      3
 
+static void Task_BeepControl(void* pvParameters);
 
 void Task_BeepControl_Init(void)
 {
@@ -25,7 +26,7 @@ void Task_BeepControl_Init(void)
 }
 
 
-void Task_BeepControl(void* pvParameters)
+static void Task_BeepControl(void* pvParameters)
 {
     
     while(1)

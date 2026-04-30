@@ -9,7 +9,7 @@ set(src_dirs
             App/App_Subscriber
             Task/Task_Init
             Task/Task_MotionControl
-            Task/Task_VoltageDetect
+            Task/Task_LedControl
             Task/Task_BeepControl)
 
 set(include_dirs
@@ -23,7 +23,7 @@ set(include_dirs
             App/App_Subscriber
             Task/Task_Init
             Task/Task_MotionControl
-            Task/Task_VoltageDetect
+            Task/Task_LedControl
             Task/Task_BeepControl)
 
 set(requires
