@@ -1,9 +1,14 @@
 set(src_dirs
-            hardware/LED
+            hardware/LED/LED_CC
+            hardware/LED/LED_PC
             hardware/BEEP
             hardware/ADC
-            hardware/MOTOR
+            hardware/ENCODER
             hardware/PID
+            hardware/IMU
+            hardware/TIMER
+            hardware/I2C
+            hardware/BOARD
             App/App_Init
             App/App_Publisher
             App/App_Subscriber
@@ -13,11 +18,16 @@ set(src_dirs
             Task/Task_BeepControl)
 
 set(include_dirs
-            hardware/LED
+            hardware/LED/LED_CC
+            hardware/LED/LED_PC
             hardware/BEEP
             hardware/ADC
-            hardware/MOTOR
+            hardware/ENCODER
             hardware/PID
+            hardware/IMU
+            hardware/TIMER
+            hardware/I2C
+            hardware/BOARD
             App/App_Init
             App/App_Publisher
             App/App_Subscriber
