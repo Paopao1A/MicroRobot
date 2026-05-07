@@ -17,6 +17,9 @@
 #define ENCODER_PCNT_LOW_LIMIT    -1000
 #define ENCODER_NUM               4
 
+#define ENCODER_COUNT_PER_REV     1040.0f // 1040为电机每转一圈编码器的计数值脉冲
+#define ENCODER_SPEED_PERIOD_S    0.01f  // 速度计算周期0.01s
+
 typedef struct
 {
     ENCODER_Base_t base;
@@ -26,4 +29,3 @@ typedef struct
 void ESPENCODER_Init(ESPENCODER_Class_t *self, const char *name);
 
 #endif
-

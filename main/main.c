@@ -17,7 +17,17 @@ void app_main(void)
 
     while(1)
     {
+        /*测试LED*/
         LED_Flash(Esp_LED); // 通过LED父类接口控制LED闪烁
-        vTaskDelay(pdMS_TO_TICKS(1)); // 延时1ms
+
+        /*测试IMU和I2C是否正常*/
+        //float angular = IMU_Get_Angular();
+        //printf("angular: %f\n", angular);
+
+        /*测试编码器*/
+        float speed = Encoder_Get_Speed(ENCODER_ID_M1);
+        int count = Encoder_Get_Count(ENCODER_ID_M1);
+        printf("encoder speed: %f, count: %d\n", speed, count);
+        vTaskDelay(pdMS_TO_TICKS(10)); // 延时1ms
     }
 }

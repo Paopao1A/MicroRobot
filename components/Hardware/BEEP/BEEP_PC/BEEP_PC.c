@@ -16,12 +16,3 @@ void BEEP_OFF(BEEP_Base_t *self)
     self->ops->BEEP_OFF(self);
 }
 
-void BEEP_On(BEEP_Base_t *self)
-{
-    BEEP_ON(self);
-}
-
-void BEEP_Off(BEEP_Base_t *self)
-{
-    BEEP_OFF(self);
-}

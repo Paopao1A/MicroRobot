@@ -7,7 +7,7 @@
 
 static const char *TAG = "I2C_MASTER";
 
-static void ESPI2C_InitOps(I2C_Base_t *self);
+static void ESPI2C_InitOps(ESPI2C_Class_t *self);
 static void ESPI2C_Delete(I2C_Base_t *self);
 static esp_err_t ESPI2C_Read(I2C_Base_t *self, uint8_t addr, uint8_t reg, uint16_t len, uint8_t *data);
 static uint8_t ESPI2C_ReadByte(I2C_Base_t *self, uint8_t addr, uint8_t reg);
@@ -15,7 +15,6 @@ static esp_err_t ESPI2C_Write(I2C_Base_t *self, uint8_t addr, uint8_t reg, uint1
 static esp_err_t ESPI2C_WriteByte(I2C_Base_t *self, uint8_t addr, uint8_t reg, uint8_t data);
 
 static const I2C_Ops_t ESP_I2C_Ops = {
-    .I2C_INIT = ESPI2C_InitOps,
     .I2C_DELETE = ESPI2C_Delete,
     .I2C_READ = ESPI2C_Read,
     .I2C_READ_BYTE = ESPI2C_ReadByte,
@@ -23,28 +22,27 @@ static const I2C_Ops_t ESP_I2C_Ops = {
     .I2C_WRITE_BYTE = ESPI2C_WriteByte,
 };
 
-static void ESPI2C_InitOps(I2C_Base_t *self)
+static void ESPI2C_InitOps(ESPI2C_Class_t *self)
 {
-    ESPI2C_Class_t *class = container_of(self, ESPI2C_Class_t, base);
 
-    if (class->installed)
+    if (self->installed)
     {
         return;
     }
 
-    ESP_LOGI(TAG, "Init I2C master:SCL->GPIO%d, SDA->GPIO%d", class->scl_gpio_num, class->sda_gpio_num);
+    ESP_LOGI(TAG, "Init I2C master:SCL->GPIO%d, SDA->GPIO%d", self->scl_gpio_num, self->sda_gpio_num);
 
     i2c_config_t conf = {
         .mode = I2C_MODE_MASTER,
-        .sda_io_num = class->sda_gpio_num,
-        .scl_io_num = class->scl_gpio_num,
+        .sda_io_num = self->sda_gpio_num,
+        .scl_io_num = self->scl_gpio_num,
         .sda_pullup_en = GPIO_PULLUP_ENABLE,
         .scl_pullup_en = GPIO_PULLUP_ENABLE,
-        .master.clk_speed = class->freq_hz,
+        .master.clk_speed = self->freq_hz,
     };
-    ESP_ERROR_CHECK(i2c_param_config(class->port, &conf));
-    ESP_ERROR_CHECK(i2c_driver_install(class->port, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0));
-    class->installed = true;
+    ESP_ERROR_CHECK(i2c_param_config(self->port, &conf));
+    ESP_ERROR_CHECK(i2c_driver_install(self->port, conf.mode, I2C_MASTER_RX_BUF_DISABLE, I2C_MASTER_TX_BUF_DISABLE, 0));
+    self->installed = true;
 }
 
 static void ESPI2C_Delete(I2C_Base_t *self)
@@ -129,5 +127,5 @@ void ESPI2C_Init(ESPI2C_Class_t *self,
                  uint32_t timeout_ms)
 {
     ESPI2C_Construct(self, name, port, scl_gpio_num, sda_gpio_num, freq_hz, timeout_ms);
-    I2C_INIT(&self->base);
+    ESPI2C_InitOps(self);
 }

@@ -4,7 +4,10 @@
 #include "LED_CC.h"
 #include "LED_PC.h"
 
-void LED_Init(ESPLED_Class_t *self, const char *name, gpio_num_t gpio_num, uint16_t interval);
+void LED_On(LED_Base_t *self);
+void LED_Off(LED_Base_t *self);
+void LED_Flash(LED_Base_t *self);
+
 
 #endif
 

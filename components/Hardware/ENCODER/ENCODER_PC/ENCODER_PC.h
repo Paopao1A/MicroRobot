@@ -8,7 +8,7 @@ typedef enum
     ENCODER_ID_M1 = 1,
     ENCODER_ID_M2 = 2,
     ENCODER_ID_M3 = 3,
-    ENCODER_ID_M4 = 4
+    ENCODER_ID_M4 = 4,
 } encoder_id_t;
 
 typedef struct ENCODER_Base ENCODER_Base_t;

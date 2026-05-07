@@ -13,6 +13,8 @@ set(src_dirs
             hardware/ENCODER/ENCODER_PC
             hardware/PID
             hardware/IMU
+            hardware/IMU/IMU_CC
+            hardware/IMU/IMU_PC
             hardware/TIMER
             hardware/I2C
             hardware/I2C/I2C_CC
@@ -42,6 +44,8 @@ set(include_dirs
             hardware/ENCODER/ENCODER_PC
             hardware/PID
             hardware/IMU
+            hardware/IMU/IMU_CC
+            hardware/IMU/IMU_PC
             hardware/TIMER
             hardware/I2C
             hardware/I2C/I2C_CC

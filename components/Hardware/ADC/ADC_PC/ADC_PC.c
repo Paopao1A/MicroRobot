@@ -24,17 +24,3 @@ uint16_t ADC_GET_RAW_DATA(ADC_Base_t *self)
     return self->ops->ADC_GET_RAW_DATA(self);
 }
 
-void ADC_Update(ADC_Base_t *self)
-{
-    ADC_UPDATE(self);
-}
-
-float ADC_GetVoltage(ADC_Base_t *self)
-{
-    return ADC_GET_VOLTAGE(self);
-}
-
-uint16_t ADC_GetRawData(ADC_Base_t *self)
-{
-    return ADC_GET_RAW_DATA(self);
-}

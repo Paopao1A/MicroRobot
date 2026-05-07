@@ -23,17 +23,6 @@ static ADC_Base_t *ADC_Get_Default(void)
     return Battery_ADC;
 }
 
-void ADC_Init(void)
-{
-    ESPADC_Init(&s_legacy_battery_adc,
-                "battery_adc",
-                ADC_UNIT_BATTERY,
-                ADC_CHANNEL_BATTERY,
-                ADC_ATTEN_BATTERY,
-                ADC_BITWIDTH_BATTERY,
-                BATTERY_VOLTAGE_RATIO);
-    Battery_ADC = &s_legacy_battery_adc.base;
-}
 
 void ADC_UpdateVoltageData(void)
 {

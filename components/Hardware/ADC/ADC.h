@@ -7,7 +7,6 @@
 extern volatile float Voltage_Data;
 extern volatile uint16_t Voltage_RawData;
 
-void ADC_Init(void);
 void ADC_UpdateVoltageData(void);
 
 #endif

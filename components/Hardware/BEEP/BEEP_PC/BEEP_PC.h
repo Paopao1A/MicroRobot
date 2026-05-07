@@ -20,7 +20,4 @@ struct BEEP_Base
 void BEEP_ON(BEEP_Base_t *self);
 void BEEP_OFF(BEEP_Base_t *self);
 
-void BEEP_On(BEEP_Base_t *self);
-void BEEP_Off(BEEP_Base_t *self);
-
 #endif

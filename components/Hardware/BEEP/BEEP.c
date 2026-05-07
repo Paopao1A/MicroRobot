@@ -14,12 +14,6 @@ static BEEP_Base_t *BEEP_Get_Default(void)
     return Esp_BEEP;
 }
 
-void BEEP_Init(void)
-{
-    ESPBEEP_Init(&s_legacy_beep, "esp_beep", BEEP_GPIO);
-    Esp_BEEP = &s_legacy_beep.base;
-}
-
 void BEEP_on(void)
 {
     BEEP_ON(BEEP_Get_Default());
