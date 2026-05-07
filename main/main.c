@@ -3,20 +3,14 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 #include "BOARD.h"
-#include "BEEP.h"
-#include "ADC.h"
-#include "ENCODER.h"
 #include "IMU.h"
 #include "TIMER.h"
 #include "PID.h"
-#include "BEEP.h"
 #include "Task_Init.h"
 
 void app_main(void)
 {
     BOARD_Init(); // 初始化板级硬件
-    BEEP_Init();
-    ADC_Init();
     Task_Init();
 
     vTaskDelay(pdMS_TO_TICKS(1000)); // 等待系统稳定

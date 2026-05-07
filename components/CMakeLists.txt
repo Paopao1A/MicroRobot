@@ -2,12 +2,20 @@ set(src_dirs
             hardware/LED/LED_CC
             hardware/LED/LED_PC
             hardware/BEEP
+            hardware/BEEP/BEEP_CC
+            hardware/BEEP/BEEP_PC
             hardware/ADC
+            hardware/ADC/ADC_CC
+            hardware/ADC/ADC_PC
             hardware/ENCODER
+            hardware/ENCODER/ENCODER_CC
+            hardware/ENCODER/ENCODER_PC
             hardware/PID
             hardware/IMU
             hardware/TIMER
             hardware/I2C
+            hardware/I2C/I2C_CC
+            hardware/I2C/I2C_PC
             hardware/BOARD
             App/App_Init
             App/App_Publisher
@@ -18,15 +26,24 @@ set(src_dirs
             Task/Task_BeepControl)
 
 set(include_dirs
+            hardware
             hardware/LED/LED_CC
             hardware/LED/LED_PC
             hardware/BEEP
+            hardware/BEEP/BEEP_CC
+            hardware/BEEP/BEEP_PC
             hardware/ADC
+            hardware/ADC/ADC_CC
+            hardware/ADC/ADC_PC
             hardware/ENCODER
+            hardware/ENCODER/ENCODER_CC
+            hardware/ENCODER/ENCODER_PC
             hardware/PID
             hardware/IMU
             hardware/TIMER
             hardware/I2C
+            hardware/I2C/I2C_CC
+            hardware/I2C/I2C_PC
             hardware/BOARD
             App/App_Init
             App/App_Publisher

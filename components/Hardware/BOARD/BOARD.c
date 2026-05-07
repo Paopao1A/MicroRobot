@@ -1,14 +1,35 @@
 #include "BOARD.h"
-#include "LED.h"
+#include "ADC_CC.h"
+#include "BEEP_CC.h"
+#include "LED_CC.h"
 
-LED_Base_t *Esp_LED;//定义LED父类对象，后续所有函数都操作父类
+LED_Base_t *Esp_LED;
+BEEP_Base_t *Esp_BEEP;
+ADC_Base_t *Battery_ADC;
+ENCODER_Base_t *Chassis_Encoder;
+I2C_Base_t *Esp_I2C;
 
-ESPLED_Class_t led;//定义LED子类对象
+static ESPLED_Class_t s_led;
+static ESPBEEP_Class_t s_beep;
+static ESPADC_Class_t s_battery_adc;
 
-
-void BOARD_Init(void)//板级初始化函数
+void BOARD_Init(void)
 {
-    LED_Init(&led,"esp_led",LED_GPIO,500);//初始化LED对象
+    ESPLED_Init(&s_led, "esp_led", LED_GPIO, 500);
+    Esp_LED = &s_led.base;
 
-    Esp_LED = &led.base;//将LED对象的父类地址赋值给Esp_LED，后续通过Esp_LED操作LED对象
+    ESPBEEP_Init(&s_beep, "esp_beep", BEEP_GPIO);
+    Esp_BEEP = &s_beep.base;
+
+    ESPADC_Init(&s_battery_adc,
+                "battery_adc",
+                ADC_UNIT_BATTERY,
+                ADC_CHANNEL_BATTERY,
+                ADC_ATTEN_BATTERY,
+                ADC_BITWIDTH_BATTERY,
+                BATTERY_VOLTAGE_RATIO);
+    Battery_ADC = &s_battery_adc.base;
+
+    Chassis_Encoder = NULL;
+    Esp_I2C = NULL;
 }

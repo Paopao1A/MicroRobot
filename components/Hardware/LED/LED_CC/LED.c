@@ -1,5 +1,5 @@
 #include "LED.h"
-#include "BOARD.h"
+#include "Hardware_Common.h"
 
 static void ESPLED_On(LED_Base_t *self);
 static void ESPLED_Off(LED_Base_t *self);
@@ -11,48 +11,49 @@ static const LED_Ops_t ESP_LED_Ops = {
     .LED_Flash = ESPLED_Flash,
 };
 
-
-
 static void ESPLED_On(LED_Base_t *self)
 {
     ESPLED_Class_t *class = container_of(self, ESPLED_Class_t, base);
     gpio_set_level(class->gpio_num, 1);
+    class->flash_state = true;
 }
 
 static void ESPLED_Off(LED_Base_t *self)
 {
     ESPLED_Class_t *class = container_of(self, ESPLED_Class_t, base);
     gpio_set_level(class->gpio_num, 0);
+    class->flash_state = false;
 }
 
 static void ESPLED_Flash(LED_Base_t *self)
 {
-    static uint16_t state = 0;
-    static uint16_t count = 0;
     ESPLED_Class_t *class = container_of(self, ESPLED_Class_t, base);
 
-    count++;
-    if (count >= class->interval)
+    class->flash_count++;
+    if (class->flash_count < class->interval)
     {
-        count = 0;
-        state = !state;
-        if (state)
-        {
-            ESPLED_On(self);
-        }
-        else
-        {
-            ESPLED_Off(self);
-        }
+        return;
+    }
+
+    class->flash_count = 0;
+    if (class->flash_state)
+    {
+        ESPLED_Off(self);
+    }
+    else
+    {
+        ESPLED_On(self);
     }
 }
 
-void LED_Init(ESPLED_Class_t *self,char *name,uint32_t gpio_num,uint16_t interval)
+void ESPLED_Init(ESPLED_Class_t *self, const char *name, gpio_num_t gpio_num, uint16_t interval)
 {
     self->base.name = name;
     self->base.ops = &ESP_LED_Ops;
     self->gpio_num = gpio_num;
-    self->interval = interval;
+    self->interval = (interval == 0) ? 1 : interval;
+    self->flash_count = 0;
+    self->flash_state = false;
 
     gpio_config_t io_conf = {};
     io_conf.intr_type = GPIO_INTR_DISABLE;
@@ -63,4 +64,9 @@ void LED_Init(ESPLED_Class_t *self,char *name,uint32_t gpio_num,uint16_t interva
     gpio_config(&io_conf);
 
     ESPLED_Off(&self->base);
+}
+
+void LED_Init(ESPLED_Class_t *self, const char *name, gpio_num_t gpio_num, uint16_t interval)
+{
+    ESPLED_Init(self, name, gpio_num, interval);
 }
