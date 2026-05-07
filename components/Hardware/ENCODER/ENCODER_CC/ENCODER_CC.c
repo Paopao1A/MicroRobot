@@ -6,7 +6,7 @@
 static int ESPENCODER_GetCount(ENCODER_Base_t *self, encoder_id_t encoder_id);
 
 static const ENCODER_Ops_t ESP_ENCODER_Ops = {
-    .ENCODER_GetCount = ESPENCODER_GetCount,
+    .ENCODER_GET_COUNT = ESPENCODER_GetCount,
 };
 
 static void ESPENCODER_InitOne(ESPENCODER_Class_t *class,
@@ -81,4 +81,3 @@ void ESPENCODER_Init(ESPENCODER_Class_t *self, const char *name)
     ESPENCODER_InitOne(self, 2, ENCODER_GPIO_H3B, ENCODER_GPIO_H3A, ENCODER_GPIO_H3A, ENCODER_GPIO_H3B);
     ESPENCODER_InitOne(self, 3, ENCODER_GPIO_H4B, ENCODER_GPIO_H4A, ENCODER_GPIO_H4A, ENCODER_GPIO_H4B);
 }
-

@@ -15,7 +15,7 @@ typedef struct ENCODER_Base ENCODER_Base_t;
 
 typedef struct
 {
-    int (*ENCODER_GetCount)(ENCODER_Base_t *self, encoder_id_t encoder_id);
+    int (*ENCODER_GET_COUNT)(ENCODER_Base_t *self, encoder_id_t encoder_id);
 } ENCODER_Ops_t;
 
 struct ENCODER_Base
@@ -24,7 +24,7 @@ struct ENCODER_Base
     const ENCODER_Ops_t *ops;
 };
 
+int ENCODER_GET_COUNT(ENCODER_Base_t *self, encoder_id_t encoder_id);
 int ENCODER_GetCount(ENCODER_Base_t *self, encoder_id_t encoder_id);
 
 #endif
-

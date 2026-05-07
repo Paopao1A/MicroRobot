@@ -39,8 +39,7 @@ void ADC_UpdateVoltageData(void)
 {
     ADC_Base_t *adc = ADC_Get_Default();
 
-    ADC_Update(adc);
-    Voltage_Data = ADC_GetVoltage(adc);
-    Voltage_RawData = ADC_GetRawData(adc);
+    ADC_UPDATE(adc);
+    Voltage_Data = ADC_GET_VOLTAGE(adc);
+    Voltage_RawData = ADC_GET_RAW_DATA(adc);
 }
-

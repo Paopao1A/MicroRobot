@@ -22,26 +22,25 @@ void ENCODER_Init(void)
 
 int Encoder_Get_Count_M1(void)
 {
-    return ENCODER_GetCount(ENCODER_Get_Default(), ENCODER_ID_M1);
+    return ENCODER_GET_COUNT(ENCODER_Get_Default(), ENCODER_ID_M1);
 }
 
 int Encoder_Get_Count_M2(void)
 {
-    return ENCODER_GetCount(ENCODER_Get_Default(), ENCODER_ID_M2);
+    return ENCODER_GET_COUNT(ENCODER_Get_Default(), ENCODER_ID_M2);
 }
 
 int Encoder_Get_Count_M3(void)
 {
-    return ENCODER_GetCount(ENCODER_Get_Default(), ENCODER_ID_M3);
+    return ENCODER_GET_COUNT(ENCODER_Get_Default(), ENCODER_ID_M3);
 }
 
 int Encoder_Get_Count_M4(void)
 {
-    return ENCODER_GetCount(ENCODER_Get_Default(), ENCODER_ID_M4);
+    return ENCODER_GET_COUNT(ENCODER_Get_Default(), ENCODER_ID_M4);
 }
 
 int Encoder_Get_Count(encoder_id_t encoder_id)
 {
-    return ENCODER_GetCount(ENCODER_Get_Default(), encoder_id);
+    return ENCODER_GET_COUNT(ENCODER_Get_Default(), encoder_id);
 }
-

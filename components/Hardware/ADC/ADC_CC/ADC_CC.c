@@ -10,9 +10,9 @@ static float ESPADC_GetVoltage(ADC_Base_t *self);
 static uint16_t ESPADC_GetRawData(ADC_Base_t *self);
 
 static const ADC_Ops_t ESP_ADC_Ops = {
-    .ADC_Update = ESPADC_Update,
-    .ADC_GetVoltage = ESPADC_GetVoltage,
-    .ADC_GetRawData = ESPADC_GetRawData,
+    .ADC_UPDATE = ESPADC_Update,
+    .ADC_GET_VOLTAGE = ESPADC_GetVoltage,
+    .ADC_GET_RAW_DATA = ESPADC_GetRawData,
 };
 
 static void ESPADC_Cali_Deinit(ESPADC_Class_t *class)
@@ -108,4 +108,3 @@ void ESPADC_Init(ESPADC_Class_t *self,
 
     ESPADC_Cali_Init(self);
 }
-

@@ -1,11 +1,11 @@
 #ifndef __BOARD_H__
 #define __BOARD_H__
 
-#include "ADC_PC.h"
-#include "BEEP_PC.h"
-#include "ENCODER_PC.h"
-#include "I2C_PC.h"
-#include "LED_PC.h"
+#include "ADC.h"
+#include "BEEP.h"
+#include "ENCODER.h"
+#include "I2C.h"
+#include "LED.h"
 
 void BOARD_Init(void);
 

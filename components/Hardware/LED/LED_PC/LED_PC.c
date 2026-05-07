@@ -1,25 +1,27 @@
 #include "LED_PC.h"
 
-void LED_On(LED_Base_t *self)
+void LED_ON(LED_Base_t *self)
 {
     assert(self != NULL);
     assert(self->ops != NULL);
-    assert(self->ops->LED_On != NULL);
-    self->ops->LED_On(self);
+    assert(self->ops->LED_ON != NULL);
+    self->ops->LED_ON(self);
 }
 
-void LED_Off(LED_Base_t *self)
+void LED_OFF(LED_Base_t *self)
 {
     assert(self != NULL);
     assert(self->ops != NULL);
-    assert(self->ops->LED_Off != NULL);
-    self->ops->LED_Off(self);
+    assert(self->ops->LED_OFF != NULL);
+    self->ops->LED_OFF(self);
 }
 
-void LED_Flash(LED_Base_t *self)
+void LED_FLASH(LED_Base_t *self)
 {
     assert(self != NULL);
     assert(self->ops != NULL);
-    assert(self->ops->LED_Flash != NULL);
-    self->ops->LED_Flash(self);
+    assert(self->ops->LED_FLASH != NULL);
+    self->ops->LED_FLASH(self);
 }
+
+

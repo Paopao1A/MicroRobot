@@ -22,11 +22,10 @@ void BEEP_Init(void)
 
 void BEEP_on(void)
 {
-    BEEP_On(BEEP_Get_Default());
+    BEEP_ON(BEEP_Get_Default());
 }
 
 void BEEP_off(void)
 {
-    BEEP_Off(BEEP_Get_Default());
+    BEEP_OFF(BEEP_Get_Default());
 }
-

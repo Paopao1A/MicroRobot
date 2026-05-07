@@ -7,9 +7,9 @@ typedef struct LED_Base LED_Base_t;
 
 typedef struct
 {
-    void (*LED_On)(LED_Base_t *self);
-    void (*LED_Off)(LED_Base_t *self);
-    void (*LED_Flash)(LED_Base_t *self);
+    void (*LED_ON)(LED_Base_t *self);
+    void (*LED_OFF)(LED_Base_t *self);
+    void (*LED_FLASH)(LED_Base_t *self);
 } LED_Ops_t;
 
 struct LED_Base
@@ -17,6 +17,10 @@ struct LED_Base
     const char *name;
     const LED_Ops_t *ops;
 };
+
+void LED_ON(LED_Base_t *self);
+void LED_OFF(LED_Base_t *self);
+void LED_FLASH(LED_Base_t *self);
 
 void LED_On(LED_Base_t *self);
 void LED_Off(LED_Base_t *self);

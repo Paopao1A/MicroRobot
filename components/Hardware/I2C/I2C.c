@@ -34,26 +34,25 @@ void I2C_Master_Init(void)
 
 void I2C_Master_Delete(void)
 {
-    I2C_Delete(I2C_Get_Default());
+    I2C_DELETE(I2C_Get_Default());
 }
 
 esp_err_t I2C_Master_Read(uint8_t addr, uint8_t reg, uint16_t len, uint8_t *data)
 {
-    return I2C_Read(I2C_Get_Default(), addr, reg, len, data);
+    return I2C_READ(I2C_Get_Default(), addr, reg, len, data);
 }
 
 uint8_t I2C_Master_Read_Byte(uint8_t addr, uint8_t reg)
 {
-    return I2C_ReadByte(I2C_Get_Default(), addr, reg);
+    return I2C_READ_BYTE(I2C_Get_Default(), addr, reg);
 }
 
 esp_err_t I2C_Master_Write(uint8_t addr, uint8_t reg, uint16_t len, uint8_t *data)
 {
-    return I2C_Write(I2C_Get_Default(), addr, reg, len, data);
+    return I2C_WRITE(I2C_Get_Default(), addr, reg, len, data);
 }
 
 esp_err_t I2C_Master_Write_Byte(uint8_t addr, uint8_t reg, uint8_t data)
 {
-    return I2C_WriteByte(I2C_Get_Default(), addr, reg, data);
+    return I2C_WRITE_BYTE(I2C_Get_Default(), addr, reg, data);
 }
-

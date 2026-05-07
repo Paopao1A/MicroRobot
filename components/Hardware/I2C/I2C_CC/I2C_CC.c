@@ -15,12 +15,12 @@ static esp_err_t ESPI2C_Write(I2C_Base_t *self, uint8_t addr, uint8_t reg, uint1
 static esp_err_t ESPI2C_WriteByte(I2C_Base_t *self, uint8_t addr, uint8_t reg, uint8_t data);
 
 static const I2C_Ops_t ESP_I2C_Ops = {
-    .I2C_Init = ESPI2C_InitOps,
-    .I2C_Delete = ESPI2C_Delete,
-    .I2C_Read = ESPI2C_Read,
-    .I2C_ReadByte = ESPI2C_ReadByte,
-    .I2C_Write = ESPI2C_Write,
-    .I2C_WriteByte = ESPI2C_WriteByte,
+    .I2C_INIT = ESPI2C_InitOps,
+    .I2C_DELETE = ESPI2C_Delete,
+    .I2C_READ = ESPI2C_Read,
+    .I2C_READ_BYTE = ESPI2C_ReadByte,
+    .I2C_WRITE = ESPI2C_Write,
+    .I2C_WRITE_BYTE = ESPI2C_WriteByte,
 };
 
 static void ESPI2C_InitOps(I2C_Base_t *self)
@@ -129,5 +129,5 @@ void ESPI2C_Init(ESPI2C_Class_t *self,
                  uint32_t timeout_ms)
 {
     ESPI2C_Construct(self, name, port, scl_gpio_num, sda_gpio_num, freq_hz, timeout_ms);
-    I2C_Init(&self->base);
+    I2C_INIT(&self->base);
 }

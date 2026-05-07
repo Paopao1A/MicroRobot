@@ -1,7 +1,7 @@
 #include "BOARD.h"
 #include "ADC_CC.h"
 #include "BEEP_CC.h"
-#include "LED_CC.h"
+#include "LED.h"
 
 LED_Base_t *Esp_LED;
 BEEP_Base_t *Esp_BEEP;
@@ -15,7 +15,7 @@ static ESPADC_Class_t s_battery_adc;
 
 void BOARD_Init(void)
 {
-    ESPLED_Init(&s_led, "esp_led", LED_GPIO, 500);
+    LED_Init(&s_led, "esp_led", LED_GPIO, 500);
     Esp_LED = &s_led.base;
 
     ESPBEEP_Init(&s_beep, "esp_beep", BEEP_GPIO);

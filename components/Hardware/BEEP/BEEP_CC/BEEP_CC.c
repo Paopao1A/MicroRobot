@@ -5,8 +5,8 @@ static void ESPBEEP_On(BEEP_Base_t *self);
 static void ESPBEEP_Off(BEEP_Base_t *self);
 
 static const BEEP_Ops_t ESP_BEEP_Ops = {
-    .BEEP_On = ESPBEEP_On,
-    .BEEP_Off = ESPBEEP_Off,
+    .BEEP_ON = ESPBEEP_On,
+    .BEEP_OFF = ESPBEEP_Off,
 };
 
 static void ESPBEEP_On(BEEP_Base_t *self)
@@ -37,4 +37,3 @@ void ESPBEEP_Init(ESPBEEP_Class_t *self, const char *name, uint32_t gpio_num)
 
     ESPBEEP_Off(&self->base);
 }
-

@@ -1,4 +1,5 @@
 set(src_dirs
+            hardware/LED
             hardware/LED/LED_CC
             hardware/LED/LED_PC
             hardware/BEEP
@@ -27,6 +28,7 @@ set(src_dirs
 
 set(include_dirs
             hardware
+            hardware/LED
             hardware/LED/LED_CC
             hardware/LED/LED_PC
             hardware/BEEP

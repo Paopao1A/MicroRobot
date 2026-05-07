@@ -1,4 +1,4 @@
-#include "LED.h"
+#include "LED_CC.h"
 #include "Hardware_Common.h"
 
 static void ESPLED_On(LED_Base_t *self);
@@ -6,9 +6,9 @@ static void ESPLED_Off(LED_Base_t *self);
 static void ESPLED_Flash(LED_Base_t *self);
 
 static const LED_Ops_t ESP_LED_Ops = {
-    .LED_On = ESPLED_On,
-    .LED_Off = ESPLED_Off,
-    .LED_Flash = ESPLED_Flash,
+    .LED_ON = ESPLED_On,
+    .LED_OFF = ESPLED_Off,
+    .LED_FLASH = ESPLED_Flash,
 };
 
 static void ESPLED_On(LED_Base_t *self)
@@ -64,9 +64,4 @@ void ESPLED_Init(ESPLED_Class_t *self, const char *name, gpio_num_t gpio_num, ui
     gpio_config(&io_conf);
 
     ESPLED_Off(&self->base);
-}
-
-void LED_Init(ESPLED_Class_t *self, const char *name, gpio_num_t gpio_num, uint16_t interval)
-{
-    ESPLED_Init(self, name, gpio_num, interval);
 }
