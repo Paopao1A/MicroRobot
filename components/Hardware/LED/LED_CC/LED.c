@@ -49,8 +49,6 @@ static void ESPLED_Flash(LED_Base_t *self)
 
 void LED_Init(ESPLED_Class_t *self,char *name,uint32_t gpio_num,uint16_t interval)
 {
-    assert(self != NULL);
-
     self->base.name = name;
     self->base.ops = &ESP_LED_Ops;
     self->gpio_num = gpio_num;

@@ -24,6 +24,6 @@ void app_main(void)
     while(1)
     {
         LED_Flash(Esp_LED); // 通过LED父类接口控制LED闪烁
-        vTaskDelay(pdMS_TO_TICKS(100)); // 延时100ms
+        vTaskDelay(pdMS_TO_TICKS(1)); // 延时1ms
     }
 }
