@@ -25,9 +25,12 @@ void app_main(void)
         //printf("angular: %f\n", angular);
 
         /*测试编码器*/
-        float speed = Encoder_Get_Speed(ENCODER_ID_M1);
-        int count = Encoder_Get_Count(ENCODER_ID_M1);
-        printf("encoder speed: %f, count: %d\n", speed, count);
+        //float speed = Encoder_Get_Speed(ENCODER_ID_M1);
+        //int count = Encoder_Get_Count(ENCODER_ID_M1);
+        //printf("encoder speed: %f, count: %d\n", speed, count);
+
+        /*测试PWM*/
+        PWM_Set_Duty(PWM_ID_M1, 100);
         vTaskDelay(pdMS_TO_TICKS(10)); // 延时1ms
     }
 }

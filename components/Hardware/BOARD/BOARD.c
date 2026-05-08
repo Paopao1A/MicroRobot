@@ -3,6 +3,7 @@
 #include "BEEP_CC.h"
 #include "IMU_CC.h"
 #include "LED.h"
+#include "PWM_CC.h"
 
 LED_Base_t *Esp_LED;
 BEEP_Base_t *Esp_BEEP;
@@ -10,6 +11,7 @@ ADC_Base_t *Battery_ADC;
 I2C_Base_t *Esp_I2C;
 IMU_Base_t *Esp_IMU;
 ENCODER_Base_t *Esp_ENCODER;
+PWM_Base_t *Esp_PWM;
 
 static ESPLED_Class_t s_led;
 static ESPBEEP_Class_t s_beep;
@@ -17,6 +19,7 @@ static ESPADC_Class_t s_battery_adc;
 static ESPI2C_Class_t s_i2c;
 static ESPIMU_Class_t s_imu;
 static ESPENCODER_Class_t s_encoder;
+static ESPPWM_Class_t s_pwm;
 
 void BOARD_Init(void)
 {
@@ -49,5 +52,8 @@ void BOARD_Init(void)
 
     ESPENCODER_Init(&s_encoder, "esp_encoder");//初始化编码器
     Esp_ENCODER = &s_encoder.base;
+
+    ESPPWM_Init(&s_pwm, "esp_pwm");//初始化PWM电机
+    Esp_PWM = &s_pwm.base;
 
 }

@@ -19,6 +19,9 @@ set(src_dirs
             hardware/I2C
             hardware/I2C/I2C_CC
             hardware/I2C/I2C_PC
+            hardware/PWM
+            hardware/PWM/PWM_CC
+            hardware/PWM/PWM_PC
             hardware/BOARD
             App/App_Init
             App/App_Publisher
@@ -50,6 +53,9 @@ set(include_dirs
             hardware/I2C
             hardware/I2C/I2C_CC
             hardware/I2C/I2C_PC
+            hardware/PWM
+            hardware/PWM/PWM_CC
+            hardware/PWM/PWM_PC
             hardware/BOARD
             App/App_Init
             App/App_Publisher
