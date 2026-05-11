@@ -8,6 +8,7 @@
 #include "IMU.h"
 #include "LED.h"
 #include "PWM.h"
+#include "TIMER.h"
 
 void BOARD_Init(void);
 
@@ -18,5 +19,6 @@ extern I2C_Base_t *Esp_I2C;
 extern IMU_Base_t *Esp_IMU;
 extern ENCODER_Base_t *Esp_ENCODER;
 extern PWM_Base_t *Esp_PWM;
+extern TIMER_Base_t *Esp_TIMER;
 
 #endif

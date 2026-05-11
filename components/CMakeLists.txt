@@ -16,6 +16,8 @@ set(src_dirs
             hardware/IMU/IMU_CC
             hardware/IMU/IMU_PC
             hardware/TIMER
+            hardware/TIMER/TIMER_CC
+            hardware/TIMER/TIMER_PC
             hardware/I2C
             hardware/I2C/I2C_CC
             hardware/I2C/I2C_PC
@@ -50,6 +52,8 @@ set(include_dirs
             hardware/IMU/IMU_CC
             hardware/IMU/IMU_PC
             hardware/TIMER
+            hardware/TIMER/TIMER_CC
+            hardware/TIMER/TIMER_PC
             hardware/I2C
             hardware/I2C/I2C_CC
             hardware/I2C/I2C_PC
