@@ -15,11 +15,6 @@ static IMU_Base_t *IMU_Get_Default(void)
 }
 
 
-int IMU_Start_OK(void)
-{
-    return IMU_START_OK(IMU_Get_Default());
-}
-
 float IMU_Get_Angular(void)//获取Z轴角速度（弧度每秒）
 {
     IMU_UPDATE(IMU_Get_Default());

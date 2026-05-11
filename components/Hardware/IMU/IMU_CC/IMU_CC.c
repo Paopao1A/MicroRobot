@@ -22,7 +22,6 @@ static void ESPIMU_GetGyroRads(IMU_Base_t *self, float gyro_rads[3]);
 
 static const IMU_Ops_t ESP_IMU_Ops = {
     .IMU_START = ESPIMU_Start,
-    .IMU_START_OK = ESPIMU_StartOK,
     .IMU_UPDATE = ESPIMU_Update,
     .IMU_GET_GYRO_RAW = ESPIMU_GetGyroRaw,
     .IMU_GET_GYRO_RADS = ESPIMU_GetGyroRads,
@@ -66,11 +65,6 @@ static void ESPIMU_Start(IMU_Base_t *self)
     ESP_LOGI(TAG, "ICM42670P gyro init OK");
 }
 
-static int ESPIMU_StartOK(IMU_Base_t *self)
-{
-    ESPIMU_Class_t *class = container_of(self, ESPIMU_Class_t, base);
-    return class->start_ok;
-}
 
 static int ESPIMU_Update(IMU_Base_t *self)
 {

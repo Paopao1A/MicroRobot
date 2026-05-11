@@ -1,5 +1,25 @@
 #include "PID.h"
 
+PID_t Speed_PID=
+{
+	.ki=0.1,
+	.kp=0,
+	.accumlation_max=1000.0f,
+	.accumlation_min=-1000.0f,
+	.outmax=100.0f,	
+	.outmin=-100.0f,
+};//速度环PID,暂时积分限幅设置较大，后续调参继续设置
+
+PID_t Angular_PID=
+{
+	.ki=0.1,
+	.kp=0,
+	.accumlation_max=1000.0f,
+	.accumlation_min=-1000.0f,
+	.outmax=100.0f,
+	.outmin=-100.0f,
+};//角度环PID
+
 
 void PID_Culculate(PID_t* PID)
 {
@@ -19,8 +39,6 @@ void PID_Culculate(PID_t* PID)
 		PID->out=PID->outmax;
 	else if(PID->out<PID->outmin)
 		PID->out=PID->outmin;
-	
-	PID->out+=PID->outoffset;//这个作用于角度环，用于克服摩擦力
 
 	PID->error_last=PID->error_now;
 	PID->actual_last=PID->actual;

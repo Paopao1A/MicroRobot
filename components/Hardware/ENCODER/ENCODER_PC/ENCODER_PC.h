@@ -5,10 +5,10 @@
 
 typedef enum
 {
-    ENCODER_ID_M1 = 1,
-    ENCODER_ID_M2 = 2,
-    ENCODER_ID_M3 = 3,
-    ENCODER_ID_M4 = 4,
+    ENCODER_ID_M1 = 1,//左前轮
+    ENCODER_ID_M2 = 2,//左后轮
+    ENCODER_ID_M3 = 3,//右前轮
+    ENCODER_ID_M4 = 4,//右后轮
 } encoder_id_t;
 
 typedef struct ENCODER_Base ENCODER_Base_t;

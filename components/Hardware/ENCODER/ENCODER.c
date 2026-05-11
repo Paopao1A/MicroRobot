@@ -26,7 +26,7 @@ int Encoder_Get_Count(encoder_id_t encoder_id)
     return ENCODER_GET_COUNT(ENCODER_Get_Default(), encoder_id);
 }
 
-float Encoder_Get_Speed(encoder_id_t encoder_id)// 获取电机转速，单位转/s
+float Encoder_Get_Speed(encoder_id_t encoder_id)// 获取电机转速，单位转/min
 {
     static int last_count[ENCODER_NUM] = {0};
     int index = (int)encoder_id - 1;
@@ -38,7 +38,7 @@ float Encoder_Get_Speed(encoder_id_t encoder_id)// 获取电机转速，单位�
 
     int current_count = Encoder_Get_Count(encoder_id);
     int error_count = current_count - last_count[index];
-    float speed = (float)error_count /(ENCODER_COUNT_PER_REV * ENCODER_SPEED_PERIOD_S);
+    float speed = (float)error_count /(ENCODER_COUNT_PER_REV * ENCODER_SPEED_PERIOD_S) * 60.0f; // 转换为转/分钟
 
     last_count[index] = current_count;
     return speed;

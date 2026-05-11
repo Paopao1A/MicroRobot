@@ -8,14 +8,6 @@ void IMU_START(IMU_Base_t *self)
     self->ops->IMU_START(self);
 }
 
-int IMU_START_OK(IMU_Base_t *self)
-{
-    assert(self != NULL);
-    assert(self->ops != NULL);
-    assert(self->ops->IMU_START_OK != NULL);
-    return self->ops->IMU_START_OK(self);
-}
-
 int IMU_UPDATE(IMU_Base_t *self)
 {
     assert(self != NULL);

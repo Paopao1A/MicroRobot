@@ -30,7 +30,7 @@ void app_main(void)
         //printf("encoder speed: %f, count: %d\n", speed, count);
 
         /*测试PWM*/
-        PWM_Set_Duty(PWM_ID_M1, 100);
-        vTaskDelay(pdMS_TO_TICKS(10)); // 延时1ms
+        //PWM_Set_Duty(PWM_ID_M1, 100);
+        //vTaskDelay(pdMS_TO_TICKS(10)); // 延时1ms
     }
 }

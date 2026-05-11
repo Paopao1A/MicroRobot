@@ -25,5 +25,7 @@ typedef struct
 }PID_t;
 
 void PID_Culculate(PID_t* PID);
+extern PID_t Speed_PID;
+extern PID_t Angular_PID;
 
 #endif
