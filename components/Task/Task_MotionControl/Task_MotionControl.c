@@ -9,7 +9,7 @@
 #include "Encoder.h"
 
 #define TASK_MOTION_CONTROL_STACK_SIZE    4096
-#define TASK_MOTION_CONTROL_PRIORITY      5
+#define TASK_MOTION_CONTROL_PRIORITY      8   //运动控制优先级高，保证实时性
 
 static void Task_MotionControl(void *pvParameters);
 
@@ -35,8 +35,8 @@ static void Task_MotionControl(void *pvParameters)
     static float Ave_Speed;//平均速度,r/min
     static float Angular;//角速度
 
-    Speed_PID.target=50.0f;//目标速度，单位为转/分钟，目前先设定确定值，后续是MicroRoss订阅的消息
-    Angular_PID.target=0.0f;//目标角速度，单位为rad/s，目前先设定确定值，后续是MicroRoss订阅的消息
+    Speed_PID.target=50.0f;//目标速度，单位为转/分钟，目前先设定确定值，后续是MicroRos订阅的消息
+    Angular_PID.target=0.0f;//目标角速度，单位为rad/s，目前先设定确定值，后续是MicroRos订阅的消息
     while (1)
     {
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);//等待定时器通知，10ms周期,PDTRUE表示接收到通知后将通知值清零，portMAX_DELAY表示无限等待。

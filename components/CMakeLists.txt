@@ -18,6 +18,9 @@ set(src_dirs
             hardware/TIMER
             hardware/TIMER/TIMER_CC
             hardware/TIMER/TIMER_PC
+            hardware/WIFI
+            hardware/WIFI/WIFI_CC
+            hardware/WIFI/WIFI_PC
             hardware/I2C
             hardware/I2C/I2C_CC
             hardware/I2C/I2C_PC
@@ -54,6 +57,9 @@ set(include_dirs
             hardware/TIMER
             hardware/TIMER/TIMER_CC
             hardware/TIMER/TIMER_PC
+            hardware/WIFI
+            hardware/WIFI/WIFI_CC
+            hardware/WIFI/WIFI_PC
             hardware/I2C
             hardware/I2C/I2C_CC
             hardware/I2C/I2C_PC
@@ -71,7 +77,11 @@ set(include_dirs
 
 set(requires
             driver
-            esp_adc)
+            esp_adc
+            esp_event
+            esp_netif
+            esp_wifi
+            nvs_flash)
 
 idf_component_register(SRC_DIRS ${src_dirs} INCLUDE_DIRS ${include_dirs} REQUIRES ${requires})
 component_compile_options(-ffast-math -O3 -Wno-error=format -Wno-format)

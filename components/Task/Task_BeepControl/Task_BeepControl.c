@@ -4,7 +4,7 @@
 #include "ADC.h"
 #include "BEEP.h"
 
-#define TASK_BEEP_CONTROL_STACK_SIZE    2048
+#define TASK_BEEP_CONTROL_STACK_SIZE    1024
 #define TASK_BEEP_CONTROL_PRIORITY      3
 
 static void Task_BeepControl(void* pvParameters);

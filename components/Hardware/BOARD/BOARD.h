@@ -9,6 +9,7 @@
 #include "LED.h"
 #include "PWM.h"
 #include "TIMER.h"
+#include "WIFI.h"
 
 void BOARD_Init(void);
 
@@ -20,5 +21,6 @@ extern IMU_Base_t *Esp_IMU;
 extern ENCODER_Base_t *Esp_ENCODER;
 extern PWM_Base_t *Esp_PWM;
 extern TIMER_Base_t *Esp_TIMER;
+extern WIFI_Base_t *Esp_WIFI;
 
 #endif

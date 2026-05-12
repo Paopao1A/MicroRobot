@@ -5,6 +5,7 @@
 #include "LED.h"
 #include "PWM_CC.h"
 #include "TIMER_CC.h"
+#include "WIFI_CC.h"
 
 LED_Base_t *Esp_LED;
 BEEP_Base_t *Esp_BEEP;
@@ -14,6 +15,7 @@ IMU_Base_t *Esp_IMU;
 ENCODER_Base_t *Esp_ENCODER;
 PWM_Base_t *Esp_PWM;
 TIMER_Base_t *Esp_TIMER;
+WIFI_Base_t *Esp_WIFI;
 
 static ESPLED_Class_t s_led;
 static ESPBEEP_Class_t s_beep;
@@ -23,6 +25,7 @@ static ESPIMU_Class_t s_imu;
 static ESPENCODER_Class_t s_encoder;
 static ESPPWM_Class_t s_pwm;
 static ESPTIMER_Class_t s_timer;
+static ESPWIFI_Class_t s_wifi;
 
 void BOARD_Init(void)
 {
@@ -62,5 +65,9 @@ void BOARD_Init(void)
     ESPTIMER_Init(&s_timer, "esp_timer", TIMER_PERIOD_US);
     Esp_TIMER = &s_timer.base;
     TIMER_Start();
+
+    ESPWIFI_Init(&s_wifi, "esp_wifi", WIFI_SSID, WIFI_PASSWORD, WIFI_MAXIMUM_RETRY);
+    Esp_WIFI = &s_wifi.base;
+    WIFI_Init();
 
 }

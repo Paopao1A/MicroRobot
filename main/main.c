@@ -11,14 +11,17 @@
 void app_main(void)
 {
     BOARD_Init(); // 初始化板级硬件
-    Task_Init();
+    Task_Init();// 初始化所有任务
 
-    vTaskDelay(pdMS_TO_TICKS(1000)); // 等待系统稳定
+    BEEP_on(); // 打开蜂鸣器，表示初始化成功
+    vTaskDelay(pdMS_TO_TICKS(2000)); // 等待2秒
+    BEEP_off(); // 关闭蜂鸣器
+
 
     while(1)
     {
         /*测试LED*/
-        LED_Flash(Esp_LED); // 通过LED父类接口控制LED闪烁
+        //LED_Flash(Esp_LED); // 通过LED父类接口控制LED闪烁
 
         /*测试IMU和I2C是否正常*/
         //float angular = IMU_Get_Angular();
