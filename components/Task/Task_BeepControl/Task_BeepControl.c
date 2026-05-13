@@ -4,20 +4,20 @@
 #include "ADC.h"
 #include "BEEP.h"
 
-#define TASK_BEEP_CONTROL_STACK_SIZE    1024
+#define TASK_BEEP_CONTROL_STACK_SIZE    2048
 #define TASK_BEEP_CONTROL_PRIORITY      3
 
 static void Task_BeepControl(void* pvParameters);
 
 void Task_BeepControl_Init(void)
 {
-    TaskHandle_t *xTaskHandle = NULL;
+    TaskHandle_t xTaskHandle = NULL;
     xTaskCreate(Task_BeepControl,
                 "Task_BeepControl",
                 TASK_BEEP_CONTROL_STACK_SIZE,
                 NULL,
                 TASK_BEEP_CONTROL_PRIORITY,
-                xTaskHandle);
+                &xTaskHandle);
     if(xTaskHandle == NULL)
     {
         printf("Task_BeepControl_Init: xTaskCreate failed\n");

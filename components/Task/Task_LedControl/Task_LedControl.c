@@ -6,7 +6,7 @@
 #include "LED.h"
 
 
-#define TASK_LED_CONTROL_STACK_SIZE    1024
+#define TASK_LED_CONTROL_STACK_SIZE    2048
 #define TASK_LED_CONTROL_PRIORITY      3
 
 static void Task_LedControl(void *pvParameters);

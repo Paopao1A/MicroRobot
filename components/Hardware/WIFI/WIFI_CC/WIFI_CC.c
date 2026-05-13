@@ -29,10 +29,12 @@ static void ESPWIFI_EventHandler(void *arg,
                                  int32_t event_id,
                                  void *event_data)
 {
+    ESP_LOGI(TAG, "event_base: %s, event_id: %d", event_base, event_id);
     ESPWIFI_Class_t *class = (ESPWIFI_Class_t *)arg;
 
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START)
     {
+        ESP_LOGI(TAG, "WIFI_EVENT_STA_START");
         esp_wifi_connect();
     }
     else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED)
@@ -113,7 +115,8 @@ static void ESPWIFI_Connect(WIFI_Base_t *self)
                                                             NULL));
 
         wifi_config_t wifi_config = {0};
-        snprintf((char *)wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid), "%s", class->ssid);
+        //strcpy((char *)wifi_config.sta.ssid, class->ssid);
+        snprintf((char *)wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid), "%s", class->ssid);//和strcyp一样的效果，都是把class->ssid的内容复制到wifi_config.sta.ssid中，但是snprintf可以防止缓冲区溢出，更安全一些。
         snprintf((char *)wifi_config.sta.password, sizeof(wifi_config.sta.password), "%s", class->password);
         wifi_config.sta.threshold.authmode = WIFI_AUTH_WPA2_PSK;
 
@@ -134,7 +137,7 @@ static void ESPWIFI_Connect(WIFI_Base_t *self)
                                            WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
                                            pdFALSE,
                                            pdFALSE,
-                                           portMAX_DELAY);
+                                           pdMS_TO_TICKS(10000));
 
     if (bits & WIFI_CONNECTED_BIT)
     {

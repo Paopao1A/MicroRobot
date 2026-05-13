@@ -33,9 +33,8 @@ void Task_MotionControl_Init(void)
 static void Task_MotionControl(void *pvParameters)
 {
     static float Ave_Speed;//平均速度,r/min
-    static float Angular;//角速度
 
-    Speed_PID.target=50.0f;//目标速度，单位为转/分钟，目前先设定确定值，后续是MicroRos订阅的消息
+    Speed_PID.target=0.0f;//目标速度，单位为转/分钟，目前先设定确定值，后续是MicroRos订阅的消息
     Angular_PID.target=0.0f;//目标角速度，单位为rad/s，目前先设定确定值，后续是MicroRos订阅的消息
     while (1)
     {
