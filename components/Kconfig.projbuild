@@ -1,0 +1,28 @@
+menu "MicroRobot app settings"
+
+    config MICRO_ROS_APP_STACK
+        int "Stack size of the micro-ROS app task"
+        default 16000
+        help
+            Stack size in bytes for the micro-ROS initialization task.
+
+    config MICRO_ROS_APP_TASK_PRIO
+        int "Priority of the micro-ROS app task"
+        default 5
+        help
+            FreeRTOS priority for the micro-ROS initialization task.
+
+    config MICRO_ROS_DOMAIN_ID
+        int "ROS domain ID"
+        default 20
+        range 0 101
+        help
+            ROS 2 domain ID used by this micro-ROS node.
+
+    config MICRO_ROS_NAMESPACE
+        string "ROS namespace"
+        default ""
+        help
+            Namespace used by this micro-ROS node.
+
+endmenu

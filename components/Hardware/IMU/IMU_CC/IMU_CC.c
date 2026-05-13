@@ -15,7 +15,6 @@
 static const char *TAG = "ICM42670P";
 
 static void ESPIMU_Start(IMU_Base_t *self);
-static int ESPIMU_StartOK(IMU_Base_t *self);
 static int ESPIMU_Update(IMU_Base_t *self);
 static void ESPIMU_GetGyroRaw(IMU_Base_t *self, int16_t gyro[3]);
 static void ESPIMU_GetGyroRads(IMU_Base_t *self, float gyro_rads[3]);
