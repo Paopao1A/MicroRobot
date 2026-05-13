@@ -24,6 +24,7 @@ static const WIFI_Ops_t ESP_WIFI_Ops = {
     .WIFI_IS_CONNECTED = ESPWIFI_IsConnected,
 };
 
+//wifi事件处理函数
 static void ESPWIFI_EventHandler(void *arg,
                                  esp_event_base_t event_base,
                                  int32_t event_id,
@@ -89,16 +90,16 @@ static void ESPWIFI_Connect(WIFI_Base_t *self)
 
     if (!class->is_initialized)
     {
-        ESPWIFI_NVSInit();
+        ESPWIFI_NVSInit();//初始化nvs_flash
         ESP_ERROR_CHECK(esp_netif_init());
 
-        esp_err_t ret = esp_event_loop_create_default();
+        esp_err_t ret = esp_event_loop_create_default();//创建默认的事件循环
         if (ret != ESP_ERR_INVALID_STATE)
         {
             ESP_ERROR_CHECK(ret);
         }
 
-        esp_netif_create_default_wifi_sta();
+        esp_netif_create_default_wifi_sta();//创建默认的wifi station接口
 
         wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
         ESP_ERROR_CHECK(esp_wifi_init(&cfg));

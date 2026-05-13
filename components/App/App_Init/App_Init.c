@@ -49,22 +49,26 @@ static TaskHandle_t s_micro_ros_task_handle = NULL;
 
 static void App_MicroRosTask(void *arg)
 {
+    //确认wifi连接成功
     if (!WIFI_IsConnected())
     {
         ESP_LOGI(TAG, "Waiting for WiFi connection");
         WIFI_Init();
     }
 
+    //创建ROS初始化参数
     rcl_allocator_t allocator = rcl_get_default_allocator();
     rclc_support_t support;
 
     rcl_init_options_t init_options = rcl_get_zero_initialized_init_options();
     RCCHECK(rcl_init_options_init(&init_options, allocator));
+    
+    //设置ROS域ID和Agent地址
     RCCHECK(rcl_init_options_set_domain_id(&init_options, ROS_DOMAIN_ID));
-
     rmw_init_options_t *rmw_options = rcl_init_options_get_rmw_init_options(&init_options);
     RCCHECK(rmw_uros_options_set_udp_address(ROS_AGENT_IP, ROS_AGENT_PORT, rmw_options));
 
+    //循环尝试连接micro-ROS Agent，直到成功
     while (rclc_support_init_with_options(&support, 0, NULL, &init_options, &allocator) != RCL_RET_OK)
     {
         ESP_LOGW(TAG, "Connecting micro-ROS agent %s:%s", ROS_AGENT_IP, ROS_AGENT_PORT);
@@ -73,6 +77,7 @@ static void App_MicroRosTask(void *arg)
 
     ESP_LOGI(TAG, "Connected micro-ROS agent %s:%s", ROS_AGENT_IP, ROS_AGENT_PORT);
 
+    //初始化ROS节点以及调度器executor
     rcl_node_t node;
     RCCHECK(rclc_node_init_default(&node, "micro_robot", ROS_NAMESPACE, &support));
     ESP_LOGI(TAG, "micro-ROS node initialized");
@@ -82,9 +87,12 @@ static void App_MicroRosTask(void *arg)
                                &support.context,
                                APP_SUBSCRIBER_HANDLE_NUM,
                                &allocator));
+                               
+    //初始化订阅者
     RCCHECK(App_Subscriber_Init(&node, &executor));
     ESP_LOGI(TAG, "micro-ROS subscribers initialized");
 
+    //循环处理ROS事件
     while (1)
     {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
@@ -99,6 +107,7 @@ void App_Init(void)
         return;
     }
 
+    //初始化MicroRos任务
     xTaskCreate(App_MicroRosTask,
                 "App_MicroRosTask",
                 CONFIG_MICRO_ROS_APP_STACK,

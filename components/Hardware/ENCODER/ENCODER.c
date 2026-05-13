@@ -21,7 +21,7 @@ static ENCODER_Base_t *ENCODER_Get_Default(void)
 }
 
 
-int Encoder_Get_Count(encoder_id_t encoder_id)
+int Encoder_Get_Count(encoder_id_t encoder_id)// 获取电机转数
 {
     return ENCODER_GET_COUNT(ENCODER_Get_Default(), encoder_id);
 }

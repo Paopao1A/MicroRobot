@@ -27,6 +27,7 @@ static ESPPWM_Class_t s_pwm;
 static ESPTIMER_Class_t s_timer;
 static ESPWIFI_Class_t s_wifi;
 
+//初始化板级硬件，所有硬件都在这里初始化，并将基类指针赋值给全局变量，供应用层调用
 void BOARD_Init(void)
 {
     ESPLED_Init(&s_led, "esp_led", LED_GPIO, 500);//初始化LED
@@ -62,11 +63,11 @@ void BOARD_Init(void)
     ESPPWM_Init(&s_pwm, "esp_pwm");//初始化PWM电机
     Esp_PWM = &s_pwm.base;
 
-    ESPTIMER_Init(&s_timer, "esp_timer", TIMER_PERIOD_US);
+    ESPTIMER_Init(&s_timer, "esp_timer", TIMER_PERIOD_US);//初始化定时器
     Esp_TIMER = &s_timer.base;
     TIMER_Start();
 
-    ESPWIFI_Init(&s_wifi, "esp_wifi", WIFI_SSID, WIFI_PASSWORD, WIFI_MAXIMUM_RETRY);
+    ESPWIFI_Init(&s_wifi, "esp_wifi", WIFI_SSID, WIFI_PASSWORD, WIFI_MAXIMUM_RETRY);//初始化WIFI
     Esp_WIFI = &s_wifi.base;
     WIFI_Init();
 

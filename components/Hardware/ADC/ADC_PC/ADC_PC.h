@@ -23,8 +23,4 @@ void ADC_UPDATE(ADC_Base_t *self);
 float ADC_GET_VOLTAGE(ADC_Base_t *self);
 uint16_t ADC_GET_RAW_DATA(ADC_Base_t *self);
 
-void ADC_Update(ADC_Base_t *self);
-float ADC_GetVoltage(ADC_Base_t *self);
-uint16_t ADC_GetRawData(ADC_Base_t *self);
-
 #endif
