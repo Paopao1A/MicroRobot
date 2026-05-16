@@ -7,6 +7,7 @@
 #include "IMU.h"
 #include "PWM.h"
 #include "Encoder.h"
+#include "App_Subscriber.h"
 
 #define TASK_MOTION_CONTROL_STACK_SIZE    4096
 #define TASK_MOTION_CONTROL_PRIORITY      8   //运动控制优先级高，保证实时性
@@ -52,9 +53,31 @@ static void Task_MotionControl(void *pvParameters)
         float Ave_Right_Speed=(Encoder_Get_Speed(ENCODER_ID_M3)+Encoder_Get_Speed(ENCODER_ID_M4))/2.0f;//右轮平均速度，单位转/min
         Ave_Speed=(Ave_Left_Speed+Ave_Right_Speed)/2.0f;//整车平均速度
 
+        //订阅速度和角速度目标，在临界区操作，确保线程安全
+        App_CmdVel_Target_t CmdVel_Target;
+        App_Subscriber_GetCmdVelTarget(&CmdVel_Target);
+        Speed_PID.target = CmdVel_Target.Speed_RPM;
+        Angular_PID.target = CmdVel_Target.Angular_Radps;
+        if (CmdVel_Target.Is_Timeout)//如果上位机心跳包超时，重置PID积分，停止电机
+        {
+            Speed_PID.error_accumlation = 0.0f;
+            Speed_PID.error_last = 0.0f;
+            Speed_PID.out = 0.0f;
+            Angular_PID.error_accumlation = 0.0f;
+            Angular_PID.error_last = 0.0f;
+            Angular_PID.out = 0.0f;
+            PWM_Stop_Motor(PWM_ID_M1,true);
+            PWM_Stop_Motor(PWM_ID_M2,true);
+            PWM_Stop_Motor(PWM_ID_M3,true);
+            PWM_Stop_Motor(PWM_ID_M4,true);
+            continue;
+        }
+
+        //速度PID计算
         Speed_PID.actual=Ave_Speed;
         PID_Culculate(&Speed_PID);
 
+        //角速度PID计算
         Angular_PID.actual=IMU_Get_Angular();//获取当前角速度，单位为rad/s
         PID_Culculate(&Angular_PID);
 

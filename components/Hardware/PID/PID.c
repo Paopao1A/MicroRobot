@@ -2,8 +2,8 @@
 
 PID_t Speed_PID=
 {
-	.ki=0.1,
-	.kp=0,
+	.ki=1.0,
+	.kp=0.2,
 	.accumlation_max=1000.0f,
 	.accumlation_min=-1000.0f,
 	.outmax=100.0f,	
@@ -12,8 +12,8 @@ PID_t Speed_PID=
 
 PID_t Angular_PID=
 {
-	.ki=0.1,
-	.kp=0,
+	.ki=1.0,
+	.kp=0.2,
 	.accumlation_max=1000.0f,
 	.accumlation_min=-1000.0f,
 	.outmax=100.0f,
