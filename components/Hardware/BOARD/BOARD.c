@@ -1,6 +1,7 @@
-#include "BOARD.h"
+﻿#include "BOARD.h"
 #include "ADC_CC.h"
 #include "BEEP_CC.h"
+#include "Bluetooth_CC.h"
 #include "IMU_CC.h"
 #include "LED.h"
 #include "PWM_CC.h"
@@ -19,6 +20,7 @@ WIFI_Base_t *Esp_WIFI;
 
 static ESPLED_Class_t s_led;
 static ESPBEEP_Class_t s_beep;
+static ESPBLUETOOTH_Class_t s_bluetooth;
 static ESPADC_Class_t s_battery_adc;
 static ESPI2C_Class_t s_i2c;
 static ESPIMU_Class_t s_imu;
@@ -35,6 +37,14 @@ void BOARD_Init(void)
 
     ESPBEEP_Init(&s_beep, "esp_beep", BEEP_GPIO);//初始化蜂鸣器
     Esp_BEEP = &s_beep.base;
+
+    ESPBLUETOOTH_Init(&s_bluetooth, "esp_bluetooth",             //初始化蓝牙
+                      "MicroRobot",
+                      0xFFE0,
+                      0xFFE1,
+                      NULL,
+                      NULL);
+    Esp_Bluetooth = &s_bluetooth.base;
 
     ESPADC_Init(&s_battery_adc,                  //初始化电池电压ADC
                 "battery_adc",

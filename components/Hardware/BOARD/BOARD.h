@@ -3,6 +3,7 @@
 
 #include "ADC.h"
 #include "BEEP.h"
+#include "Bluetooth.h"
 #include "ENCODER.h"
 #include "I2C.h"
 #include "IMU.h"
@@ -15,6 +16,7 @@ void BOARD_Init(void);
 
 extern LED_Base_t *Esp_LED;
 extern BEEP_Base_t *Esp_BEEP;
+extern Bluetooth_Base_t *Esp_Bluetooth;
 extern ADC_Base_t *Battery_ADC;
 extern I2C_Base_t *Esp_I2C;
 extern IMU_Base_t *Esp_IMU;

@@ -21,6 +21,9 @@ set(src_dirs
             hardware/WIFI
             hardware/WIFI/WIFI_CC
             hardware/WIFI/WIFI_PC
+            hardware/Bluetooth
+            hardware/Bluetooth/Bluetooth_CC
+            hardware/Bluetooth/Bluetooth_PC
             hardware/I2C
             hardware/I2C/I2C_CC
             hardware/I2C/I2C_PC
@@ -31,6 +34,7 @@ set(src_dirs
             App/App_Init
             App/App_Publisher
             App/App_Subscriber
+            App/App_Bluetooth
             Task/Task_Init
             Task/Task_MotionControl
             Task/Task_LedControl
@@ -60,6 +64,9 @@ set(include_dirs
             hardware/WIFI
             hardware/WIFI/WIFI_CC
             hardware/WIFI/WIFI_PC
+            hardware/Bluetooth
+            hardware/Bluetooth/Bluetooth_CC
+            hardware/Bluetooth/Bluetooth_PC
             hardware/I2C
             hardware/I2C/I2C_CC
             hardware/I2C/I2C_PC
@@ -67,9 +74,11 @@ set(include_dirs
             hardware/PWM/PWM_CC
             hardware/PWM/PWM_PC
             hardware/BOARD
+            APP
             App/App_Init
             App/App_Publisher
             App/App_Subscriber
+            App/App_Bluetooth
             Task/Task_Init
             Task/Task_MotionControl
             Task/Task_LedControl
@@ -81,6 +90,7 @@ set(requires
             esp_event
             esp_netif
             esp_wifi
+            bt
             nvs_flash
             micro_ros_espidf_component)
 

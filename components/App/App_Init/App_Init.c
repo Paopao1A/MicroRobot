@@ -9,6 +9,8 @@
 #include "rclc/rclc.h"
 #include "rclc/executor.h"
 #include "rmw_microros/rmw_microros.h"
+#include "App_Bluetooth.h"
+#include "App_Control.h"
 #include "App_Subscriber.h"
 #include "WIFI.h"
 
@@ -102,6 +104,9 @@ static void App_MicroRosTask(void *arg)
 
 void App_Init(void)
 {
+#if APP_CONTROL_SOURCE == APP_CONTROL_SOURCE_BLUETOOTH //蓝牙控制模式
+    App_Bluetooth_Init_ForAPP();
+#else //ROS控制模式
     if (s_micro_ros_task_handle != NULL)
     {
         return;
@@ -119,4 +124,5 @@ void App_Init(void)
     {
         ESP_LOGE(TAG, "Create App_MicroRosTask failed");
     }
+#endif
 }
