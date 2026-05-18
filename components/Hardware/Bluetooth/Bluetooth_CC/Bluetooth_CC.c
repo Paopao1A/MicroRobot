@@ -31,13 +31,13 @@ static const Bluetooth_Ops_t ESP_Bluetooth_Ops = {
 };
 
 #if CONFIG_BT_NIMBLE_ENABLED
-static uint16_t s_conn_handle = BLE_HS_CONN_HANDLE_NONE; //当前连接句柄
+static uint16_t s_conn_handle = BLE_HS_CONN_HANDLE_NONE; //当前连接句柄，实际上就是个标志位，用于判断是否有连接，wifi模块用的事件通知机制，这里就直接用全局变量通知了
 static uint16_t s_char_handle = 0; //当前特征句句柄 
 static uint8_t s_own_addr_type = BLE_OWN_ADDR_PUBLIC; //当前地址类型
-static ble_uuid16_t s_service_uuid = BLE_UUID16_INIT(0xFFE0); //当前服务UUID
+static ble_uuid16_t s_service_uuid = BLE_UUID16_INIT(0xFFE0); //当前服务UUID，常见的透传服务UUID
 static ble_uuid16_t s_char_uuid = BLE_UUID16_INIT(0xFFE1); //当前特征UUID
 
-//GATT访问回调函数，也就是接收蓝牙数据
+//GATT访问回调函数，也就是接收蓝牙数据，手机写入 0xFFE1 特征后，会调用这个函数
 static int ESPBLUETOOTH_GattAccess(uint16_t conn_handle,
                                    uint16_t attr_handle,
                                    struct ble_gatt_access_ctxt *ctxt,
@@ -49,7 +49,7 @@ static int ESPBLUETOOTH_GattAccess(uint16_t conn_handle,
     Bluetooth_Base_t *self = (Bluetooth_Base_t *)arg;
     ESPBLUETOOTH_Class_t *class = container_of(self, ESPBLUETOOTH_Class_t, base);
 
-    if (ctxt->op == BLE_GATT_ACCESS_OP_WRITE_CHR)
+    if (ctxt->op == BLE_GATT_ACCESS_OP_WRITE_CHR)//只处理写入操作
     {
         char buffer[BLUETOOTH_PACKET_MAX_LEN];
         uint16_t len = OS_MBUF_PKTLEN(ctxt->om);
@@ -58,13 +58,13 @@ static int ESPBLUETOOTH_GattAccess(uint16_t conn_handle,
             len = sizeof(buffer) - 1;
         }
 
-        int ret = ble_hs_mbuf_to_flat(ctxt->om, buffer, len, NULL);
+        int ret = ble_hs_mbuf_to_flat(ctxt->om, buffer, len, NULL);//取出写入的数据
         if (ret != 0)
         {
             return BLE_ATT_ERR_UNLIKELY;
         }
 
-        buffer[len] = '\0';
+        buffer[len] = '\0';//添加字符串结束符
         if (class->rx_callback != NULL)
         {//调用注册的接收回调函数
             class->rx_callback(buffer, len, class->rx_arg);
@@ -76,19 +76,21 @@ static int ESPBLUETOOTH_GattAccess(uint16_t conn_handle,
     return BLE_ATT_ERR_UNLIKELY;
 }
 
+//GATT特征定义
 static struct ble_gatt_chr_def s_gatt_chrs[] = {
     {
         .uuid = &s_char_uuid.u,
         .access_cb = ESPBLUETOOTH_GattAccess,
         .arg = NULL,
         .val_handle = &s_char_handle,
-        .flags = BLE_GATT_CHR_F_WRITE |
-                 BLE_GATT_CHR_F_WRITE_NO_RSP |
-                 BLE_GATT_CHR_F_NOTIFY,
+        .flags = BLE_GATT_CHR_F_WRITE |  //手机可以写数据给 ESP32
+                 BLE_GATT_CHR_F_WRITE_NO_RSP |//手机可以无响应写入数据
+                 BLE_GATT_CHR_F_NOTIFY,//ESP32 可以 notify 数据给手机，也就是手机可以接收 ESP32 发送的数据
     },
     {0},
 };
 
+//GATT服务定义
 static const struct ble_gatt_svc_def s_gatt_svcs[] = {
     {
         .type = BLE_GATT_SVC_TYPE_PRIMARY,
@@ -119,6 +121,7 @@ static void ESPBLUETOOTH_Advertise(Bluetooth_Base_t *self)//广告蓝牙服务
         return;
     }
 
+    //设置广播字段，广播设备名称“MicroRobot”
     struct ble_hs_adv_fields fields = {0};
     fields.flags = BLE_HS_ADV_F_DISC_GEN | BLE_HS_ADV_F_BREDR_UNSUP;
     fields.name = (const uint8_t *)device_name;
@@ -126,44 +129,45 @@ static void ESPBLUETOOTH_Advertise(Bluetooth_Base_t *self)//广告蓝牙服务
     fields.name_is_complete = 1;
     ble_gap_adv_set_fields(&fields);
 
+    //启动可连接广播，等待设备连接
     struct ble_gap_adv_params adv_params = {0};
-    adv_params.conn_mode = BLE_GAP_CONN_MODE_UND;
+    adv_params.conn_mode = BLE_GAP_CONN_MODE_UND;//可连接模式
     adv_params.disc_mode = BLE_GAP_DISC_MODE_GEN;
     ble_gap_adv_start(s_own_addr_type,
                       NULL,
-                      BLE_HS_FOREVER,
+                      BLE_HS_FOREVER,//一直广播直到被连接或主动停止。
                       &adv_params,
-                      ESPBLUETOOTH_GapEvent,
+                      ESPBLUETOOTH_GapEvent,//连接事件回调函数
                       self);
 }
 
-//GAP事件回调函数，用于处理蓝牙连接和断开事件
+//连接事件回调函数，用于处理蓝牙连接和断开事件
 static int ESPBLUETOOTH_GapEvent(struct ble_gap_event *event, void *arg)
 {
     Bluetooth_Base_t *self = (Bluetooth_Base_t *)arg;
 
     switch (event->type)
     {
-    case BLE_GAP_EVENT_CONNECT:
+    case BLE_GAP_EVENT_CONNECT://连接成功
         if (event->connect.status == 0)
         {
-            s_conn_handle = event->connect.conn_handle;
+            s_conn_handle = event->connect.conn_handle;//这个 s_conn_handle 后面发送 notify 时要用
 
             struct ble_gap_upd_params params = {0};
             params.itvl_min = 6;
             params.itvl_max = 12;
             params.latency = 0;
             params.supervision_timeout = 400;
-            ble_gap_update_params(s_conn_handle, &params);
+            ble_gap_update_params(s_conn_handle, &params);//更新连接参数
         }
         else
         {
             ESPBLUETOOTH_Advertise(self);
         }
         break;
-    case BLE_GAP_EVENT_DISCONNECT:
-        s_conn_handle = BLE_HS_CONN_HANDLE_NONE;
-        ESPBLUETOOTH_Advertise(self);
+    case BLE_GAP_EVENT_DISCONNECT://断开连接
+        s_conn_handle = BLE_HS_CONN_HANDLE_NONE;//重置连接句柄
+        ESPBLUETOOTH_Advertise(self);//重新广播
         break;
     case BLE_GAP_EVENT_SUBSCRIBE:
         s_conn_handle = event->subscribe.conn_handle;
@@ -175,25 +179,25 @@ static int ESPBLUETOOTH_GapEvent(struct ble_gap_event *event, void *arg)
     return 0;
 }
 
-//同步回调函数，用于获取蓝牙地址类型
+//同步回调函数，NimBLE 同步完成后会调用它
 static void ESPBLUETOOTH_OnSync(void)
 {
-    int ret = ble_hs_id_infer_auto(0, &s_own_addr_type);
+    int ret = ble_hs_id_infer_auto(0, &s_own_addr_type);//获取蓝牙地址类型
     if (ret != 0)
     {
         ESP_LOGE(TAG, "ble_hs_id_infer_auto failed: %d", ret);
         return;
     }
 
-    ESPBLUETOOTH_Advertise(NULL);
+    ESPBLUETOOTH_Advertise(NULL);//广告蓝牙服务
 }
 
-//NimBLE主机任务，这一步完成蓝牙的连接
+//NimBLE主机任务
 static void ESPBLUETOOTH_HostTask(void *param)
 {
     (void)param;
 
-    nimble_port_run();
+    nimble_port_run();//一直运行 NimBLE 协议栈事件循环，蓝牙连接、GATT 访问、订阅事件等都在这个体系里回调。
     nimble_port_freertos_deinit();
 }
 #endif
@@ -209,8 +213,8 @@ static void ESPBLUETOOTH_Start(Bluetooth_Base_t *self)
     }
 
 #if CONFIG_BT_NIMBLE_ENABLED  //如果NimBLE使能
-    s_service_uuid.value = class->service_uuid;
-    s_char_uuid.value = class->char_uuid;
+    s_service_uuid.value = class->service_uuid;//设置服务的UUID
+    s_char_uuid.value = class->char_uuid;//设置特征的UUID
     s_gatt_chrs[0].arg = self;
 
     ESP_ERROR_CHECK(nimble_port_init());
@@ -219,7 +223,7 @@ static void ESPBLUETOOTH_Start(Bluetooth_Base_t *self)
     ble_svc_gatt_init();
     ble_svc_gap_device_name_set(class->device_name);
 
-    ble_hs_cfg.sync_cb = ESPBLUETOOTH_OnSync;//设置同步回调函数
+    ble_hs_cfg.sync_cb = ESPBLUETOOTH_OnSync;//设置同步回调函数，后续调用它开始广播
     ble_hs_cfg.gatts_register_cb = NULL;
     ble_hs_cfg.store_status_cb = NULL;
 

@@ -28,8 +28,8 @@ typedef struct
 } App_Bluetooth_PidConfig_t;
 
 static const char *TAG = "App_Bluetooth";
-static portMUX_TYPE s_Bluetooth_Lock = portMUX_INITIALIZER_UNLOCKED;
-static char s_Bluetooth_RxBuffer[APP_BLUETOOTH_PACKET_MAX_LEN * 2];
+static portMUX_TYPE s_Bluetooth_Lock = portMUX_INITIALIZER_UNLOCKED;//蓝牙锁，用于保护蓝牙数据的访问
+static char s_Bluetooth_RxBuffer[APP_BLUETOOTH_PACKET_MAX_LEN * 2];//接收缓冲区，用于存储从 ESP32 接收的数据
 static uint16_t s_Bluetooth_RxLen = 0;
 static App_Bluetooth_Target_t s_Bluetooth_Target = {
     .Speed_RPM = 0.0f,
