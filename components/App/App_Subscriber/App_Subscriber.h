@@ -11,7 +11,7 @@
 #define APP_WHEEL_CIRCUMFERENCE_M      0.1508f //轮子周长，单位：米
 #define APP_SPEED_TARGET_MAX_RPM       200.0f   //最大速度目标，单位：RPM
 #define APP_ANGULAR_TARGET_MAX_RADPS   2.0f    //最大角速度目标，单位：弧度/秒
-#define APP_CMD_VEL_TIMEOUT_MS         10000
+#define APP_CMD_VEL_TIMEOUT_MS         3000  //速度和角速度目标超时时间，单位：毫秒
 
 typedef struct
 {

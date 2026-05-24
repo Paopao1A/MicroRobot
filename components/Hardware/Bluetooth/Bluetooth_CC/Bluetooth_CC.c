@@ -215,7 +215,7 @@ static void ESPBLUETOOTH_Start(Bluetooth_Base_t *self)
 #if CONFIG_BT_NIMBLE_ENABLED  //如果NimBLE使能
     s_service_uuid.value = class->service_uuid;//设置服务的UUID
     s_char_uuid.value = class->char_uuid;//设置特征的UUID
-    s_gatt_chrs[0].arg = self;
+    s_gatt_chrs[0].arg = self;//将 Bluetooth_Base_t 结构体指针传递给 GATT 访问回调函数，这样在回调函数里就可以通过这个指针访问到 ESPBLUETOOTH_Class_t 的成员了
 
     ESP_ERROR_CHECK(nimble_port_init());
 

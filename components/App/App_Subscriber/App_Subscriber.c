@@ -47,7 +47,7 @@ void App_Subscriber_GetCmdVelTarget(App_CmdVel_Target_t *Target)
     portEXIT_CRITICAL(&s_CmdVel_Lock);
 
     if ((LastTick == 0) ||
-        ((xTaskGetTickCount() - LastTick) > pdMS_TO_TICKS(APP_CMD_VEL_TIMEOUT_MS)))//如果上次接收时间是0，或者当前时间超过超时时间10s，认为是超时
+        ((xTaskGetTickCount() - LastTick) > pdMS_TO_TICKS(APP_CMD_VEL_TIMEOUT_MS)))//如果上次接收时间是0，或者当前时间超过超时时间3s，认为是超时
     {
         Target->Speed_RPM = 0.0f;
         Target->Angular_Radps = 0.0f;
