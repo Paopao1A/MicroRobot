@@ -4,10 +4,10 @@
 #include "freertos/task.h"
 #include "TIMER.h"
 #include "PID.h"
-#include "IMU.h"
+#include "Task_IMU.h"
 #include "PWM.h"
 #include "Encoder.h"
-#include "App_Subscriber.h"
+#include "App_Subscriber_Twist.h"
 #include "App_Bluetooth.h"
 #include "App_Control.h"
 
@@ -35,7 +35,7 @@ static void Task_MotionControl_GetTarget(Task_MotionControl_Target_t *Target)
     Target->Is_Timeout = BluetoothTarget.Is_Timeout;
 #else
     App_CmdVel_Target_t CmdVel_Target;
-    App_Subscriber_GetCmdVelTarget(&CmdVel_Target);
+    App_Subscriber_Twist_GetCmdVelTarget(&CmdVel_Target);
     Target->Speed_RPM = CmdVel_Target.Speed_RPM;
     Target->Angular_Radps = CmdVel_Target.Angular_Radps;
     Target->Is_Timeout = CmdVel_Target.Is_Timeout;
@@ -109,7 +109,7 @@ static void Task_MotionControl(void *pvParameters)
         PID_Culculate(&Speed_PID);
 
         //角速度PID计算
-        Angular_PID.actual=IMU_Get_Angular();//获取当前角速度，单位为rad/s
+        Angular_PID.actual=Task_IMU_GetAngularZRadps();//获取当前角速度，单位为rad/s
         PID_Culculate(&Angular_PID);
 
 #if APP_CONTROL_SOURCE == APP_CONTROL_SOURCE_BLUETOOTH //如果控制源是蓝牙，发送PID参数和当前速度角速度用于绘图

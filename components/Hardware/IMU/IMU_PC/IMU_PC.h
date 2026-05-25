@@ -12,6 +12,8 @@ typedef struct
     int (*IMU_UPDATE)(IMU_Base_t *self);
     void (*IMU_GET_GYRO_RAW)(IMU_Base_t *self, int16_t gyro[3]);
     void (*IMU_GET_GYRO_RADS)(IMU_Base_t *self, float gyro_rads[3]);
+    void (*IMU_GET_ACCEL_RAW)(IMU_Base_t *self, int16_t accel[3]);
+    void (*IMU_GET_ACCEL_MS2)(IMU_Base_t *self, float accel_ms2[3]);
 } IMU_Ops_t;
 
 struct IMU_Base
@@ -24,5 +26,7 @@ void IMU_START(IMU_Base_t *self);
 int IMU_UPDATE(IMU_Base_t *self);
 void IMU_GET_GYRO_RAW(IMU_Base_t *self, int16_t gyro[3]);
 void IMU_GET_GYRO_RADS(IMU_Base_t *self, float gyro_rads[3]);
+void IMU_GET_ACCEL_RAW(IMU_Base_t *self, int16_t accel[3]);
+void IMU_GET_ACCEL_MS2(IMU_Base_t *self, float accel_ms2[3]);
 
 #endif

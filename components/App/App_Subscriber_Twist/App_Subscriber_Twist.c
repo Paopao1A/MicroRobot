@@ -1,4 +1,4 @@
-#include "App_Subscriber.h"
+#include "App_Subscriber_Twist.h"
 
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
@@ -9,17 +9,17 @@
 #include "rclc/subscription.h"
 #include "rosidl_runtime_c/message_type_support_struct.h"
 
-static const char *TAG = "App_Subscriber";
+static const char *TAG = "App_Subscriber_Twist";
 
-static rcl_subscription_t s_twist_subscriber;//订阅速度和角速度目标
-static geometry_msgs__msg__Twist s_twist_msg;//速度和角速度目标消息
-static portMUX_TYPE s_CmdVel_Lock = portMUX_INITIALIZER_UNLOCKED;//临界区锁
+static rcl_subscription_t s_twist_subscriber;//速度角速度订阅
+static geometry_msgs__msg__Twist s_twist_msg;//速度角速度消息
+static portMUX_TYPE s_CmdVel_Lock = portMUX_INITIALIZER_UNLOCKED;//速度角速度目标锁
 static App_CmdVel_Target_t s_CmdVel_Target = {
     .Speed_RPM = 0.0f,
     .Angular_Radps = 0.0f,
     .Is_Timeout = false,
 };
-static TickType_t s_CmdVel_LastTick = 0;
+static TickType_t s_CmdVel_LastTick = 0;//速度角速度目标最后更新时间
 
 static float App_LimitFloat(float Value, float Min, float Max)
 {
@@ -34,7 +34,8 @@ static float App_LimitFloat(float Value, float Min, float Max)
     return Value;
 }
 
-void App_Subscriber_GetCmdVelTarget(App_CmdVel_Target_t *Target)
+//获取速度角速度目标
+void App_Subscriber_Twist_GetCmdVelTarget(App_CmdVel_Target_t *Target)
 {
     if (Target == NULL)
     {
@@ -47,7 +48,7 @@ void App_Subscriber_GetCmdVelTarget(App_CmdVel_Target_t *Target)
     portEXIT_CRITICAL(&s_CmdVel_Lock);
 
     if ((LastTick == 0) ||
-        ((xTaskGetTickCount() - LastTick) > pdMS_TO_TICKS(APP_CMD_VEL_TIMEOUT_MS)))//如果上次接收时间是0，或者当前时间超过超时时间3s，认为是超时
+        ((xTaskGetTickCount() - LastTick) > pdMS_TO_TICKS(APP_CMD_VEL_TIMEOUT_MS)))//超时
     {
         Target->Speed_RPM = 0.0f;
         Target->Angular_Radps = 0.0f;
@@ -59,7 +60,7 @@ void App_Subscriber_GetCmdVelTarget(App_CmdVel_Target_t *Target)
     }
 }
 
-//将线速度从m/s转换为转/分钟，用于实际PID控制，PID目标值单位是转/分钟
+//线速度转换为转速
 static float App_LinearMpsToRpm(float Linear_Mps)
 {
     return Linear_Mps * 60.0f / APP_WHEEL_CIRCUMFERENCE_M;
@@ -69,10 +70,10 @@ static void App_TwistCallback(const void *msgin)
 {
     const geometry_msgs__msg__Twist *Msg = (const geometry_msgs__msg__Twist *)msgin;
 
-    //线速度信息，单位是m/s，1 m/s -> 约 398 r/min，所以上位机线速度输入值要小一些，比如0.1 m/s -> 约 39.8 r/min
+    //获取线速度
     float Linear_Mps = (float)Msg->linear.x;
 
-    //限制线速度和角速度的范围
+    //获取转速
     float Speed_Target_RPM = App_LimitFloat(App_LinearMpsToRpm(Linear_Mps),
                                             -APP_SPEED_TARGET_MAX_RPM,
                                             APP_SPEED_TARGET_MAX_RPM);
@@ -80,11 +81,11 @@ static void App_TwistCallback(const void *msgin)
                                          -APP_ANGULAR_TARGET_MAX_RADPS,
                                          APP_ANGULAR_TARGET_MAX_RADPS);
 
-    //创建临界区，在临界区操作，数据很少用临界区合适，用互斥锁可能导致阻塞影响实时性，直接用临界区操作
+    //更新速度角速度目标，在临界区保护，防止多任务程同时更新
     portENTER_CRITICAL(&s_CmdVel_Lock);
-    s_CmdVel_Target.Speed_RPM = Speed_Target_RPM;//用中间变量存储，好处是和任务层解耦，APP层不依赖任务层的PID控制。更清晰，控制节拍更稳定，后续扩展更舒服
+    s_CmdVel_Target.Speed_RPM = Speed_Target_RPM;//
     s_CmdVel_Target.Angular_Radps = Angular_Radps;
-    s_CmdVel_LastTick = xTaskGetTickCount();//更新时间，如果上位机迟迟没有发送信息，认为是超时
+    s_CmdVel_LastTick = xTaskGetTickCount();//
     portEXIT_CRITICAL(&s_CmdVel_Lock);
 
     ESP_LOGI(TAG,
@@ -94,7 +95,7 @@ static void App_TwistCallback(const void *msgin)
              Angular_Radps);
 }
 
-rcl_ret_t App_Subscriber_Init(rcl_node_t *node, rclc_executor_t *executor)
+rcl_ret_t App_Subscriber_Twist_Init(rcl_node_t *node, rclc_executor_t *executor)
 {
     rcl_ret_t ret = rclc_subscription_init_default(&s_twist_subscriber,
                                                    node,

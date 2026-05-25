@@ -32,11 +32,13 @@ set(src_dirs
             hardware/PWM/PWM_PC
             hardware/BOARD
             App/App_Init
-            App/App_Publisher
-            App/App_Subscriber
+            App/App_Publisher_Odom
+            App/App_Subscriber_Twist
             App/App_Bluetooth
             Task/Task_Init
+            Task/Task_IMU
             Task/Task_MotionControl
+            Task/Task_Odometry
             Task/Task_LedControl
             Task/Task_BeepControl)
 
@@ -76,11 +78,13 @@ set(include_dirs
             hardware/BOARD
             APP
             App/App_Init
-            App/App_Publisher
-            App/App_Subscriber
+            App/App_Publisher_Odom
+            App/App_Subscriber_Twist
             App/App_Bluetooth
             Task/Task_Init
+            Task/Task_IMU
             Task/Task_MotionControl
+            Task/Task_Odometry
             Task/Task_LedControl
             Task/Task_BeepControl)
 
