@@ -69,6 +69,7 @@ void IMU_Get_AccelMs2(float accel_ms2[3])//获取加速度数据（米每二次�
     IMU_GET_ACCEL_MS2(IMU_Get_Default(), accel_ms2);
 }
 
+//更新所有数据
 int IMU_Update_All(int16_t gyro_raw[3], float gyro_rads[3], int16_t accel_raw[3], float accel_ms2[3])
 {
     IMU_Base_t *imu = IMU_Get_Default();

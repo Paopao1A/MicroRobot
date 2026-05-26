@@ -133,7 +133,7 @@ static void Task_Odometry(void *pvParameters)
         portENTER_CRITICAL(&s_Odometry_Lock);
         s_Odometry_Data.X_M = X_M;  //X坐标，单位：米
         s_Odometry_Data.Y_M = Y_M;  //Y坐标，单位：米
-        s_Odometry_Data.Yaw_Rad = Yaw_Rad;  //当前角度，单位：弧度
+        s_Odometry_Data.Yaw_Rad = Yaw_Rad;  //当前横摆角度，单位：弧度
         s_Odometry_Data.Linear_X_Mps = Linear_X_Mps;    //X线速度，单位：米/秒
         s_Odometry_Data.Linear_Y_Mps = Linear_Y_Mps;    //Y线速度，单位：米/秒
         s_Odometry_Data.Angular_Z_Radps = Angular_Z_Radps;    //Z角速度，单位：弧度/秒

@@ -11,6 +11,7 @@
 #include "rmw_microros/rmw_microros.h"
 #include "App_Bluetooth.h"
 #include "App_Control.h"
+#include "App_Publisher_Imu.h"
 #include "App_Publisher_Odom.h"
 #include "App_Subscriber_Twist.h"
 #include "WIFI.h"
@@ -46,7 +47,7 @@
 #define ROS_DOMAIN_ID  CONFIG_MICRO_ROS_DOMAIN_ID
 #define ROS_AGENT_IP   CONFIG_MICRO_ROS_AGENT_IP
 #define ROS_AGENT_PORT CONFIG_MICRO_ROS_AGENT_PORT
-#define APP_MICRO_ROS_EXECUTOR_HANDLE_NUM (APP_SUBSCRIBER_TWIST_HANDLE_NUM + APP_PUBLISHER_ODOM_HANDLE_NUM)
+#define APP_MICRO_ROS_EXECUTOR_HANDLE_NUM (APP_SUBSCRIBER_TWIST_HANDLE_NUM + APP_PUBLISHER_ODOM_HANDLE_NUM + APP_PUBLISHER_IMU_HANDLE_NUM)
 
 static const char *TAG = "App_Init";
 static TaskHandle_t s_micro_ros_task_handle = NULL;
@@ -99,6 +100,9 @@ static void App_MicroRosTask(void *arg)
     //初始化发布者
     RCCHECK(App_Publisher_Odom_Init(&node, &executor, &support));
     ESP_LOGI(TAG, "micro-ROS odom publisher initialized");
+
+    RCCHECK(App_Publisher_Imu_Init(&node, &executor, &support));
+    ESP_LOGI(TAG, "micro-ROS imu publisher initialized");
 
     //循环处理ROS事件
     while (1)

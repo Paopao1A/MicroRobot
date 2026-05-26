@@ -38,7 +38,7 @@ void Task_IMU_GetSnapshot(Task_IMU_Snapshot_t *Snapshot)
     portEXIT_CRITICAL(&s_IMU_Lock);
 }
 
-//获取IMU角速度Z轴数据快照
+//获取IMU角速度Z轴数据快照，运动控制读到的通常是上一帧 10ms IMU 快照，实时性够用
 float Task_IMU_GetAngularZRadps(void)
 {
     float Angular_Z_Radps = 0.0f;
@@ -73,7 +73,6 @@ static void Task_IMU(void *pvParameters)
         Snapshot.Tick_Ms = (uint32_t)(xTaskGetTickCount() * portTICK_PERIOD_MS);
 
         portENTER_CRITICAL(&s_IMU_Lock);
-        Snapshot.Update_Count = s_IMU_Snapshot.Update_Count + 1;
         s_IMU_Snapshot = Snapshot;
         portEXIT_CRITICAL(&s_IMU_Lock);
     }
