@@ -9,7 +9,9 @@
 #include "rclc/subscription.h"
 #include "rosidl_runtime_c/message_type_support_struct.h"
 
+#if APP_CMD_VEL_LOG_ENABLE
 static const char *TAG = "App_Subscriber_Twist";
+#endif
 
 static rcl_subscription_t s_twist_subscriber;//速度角速度订阅
 static geometry_msgs__msg__Twist s_twist_msg;//速度角速度消息
@@ -83,16 +85,18 @@ static void App_TwistCallback(const void *msgin)
 
     //更新速度角速度目标，在临界区保护，防止多任务程同时更新
     portENTER_CRITICAL(&s_CmdVel_Lock);
-    s_CmdVel_Target.Speed_RPM = Speed_Target_RPM;//
+    s_CmdVel_Target.Speed_RPM = Speed_Target_RPM;
     s_CmdVel_Target.Angular_Radps = Angular_Radps;
-    s_CmdVel_LastTick = xTaskGetTickCount();//
+    s_CmdVel_LastTick = xTaskGetTickCount();//更新时间
     portEXIT_CRITICAL(&s_CmdVel_Lock);
 
+#if APP_CMD_VEL_LOG_ENABLE
     ESP_LOGI(TAG,
              "cmd_vel linear: %.3f m/s -> %.3f rpm, angular: %.3f rad/s",
              Linear_Mps,
              Speed_Target_RPM,
              Angular_Radps);
+#endif
 }
 
 rcl_ret_t App_Subscriber_Twist_Init(rcl_node_t *node, rclc_executor_t *executor)

@@ -7,9 +7,11 @@
 #include "ENCODER.h"
 #include "I2C.h"
 #include "IMU.h"
+#include "LIDAR.h"
 #include "LED.h"
 #include "PWM.h"
 #include "TIMER.h"
+#include "UART.h"
 #include "WIFI.h"
 
 void BOARD_Init(void);
@@ -20,9 +22,11 @@ extern Bluetooth_Base_t *Esp_Bluetooth;
 extern ADC_Base_t *Battery_ADC;
 extern I2C_Base_t *Esp_I2C;
 extern IMU_Base_t *Esp_IMU;
+extern LIDAR_Base_t *Esp_LIDAR;
 extern ENCODER_Base_t *Esp_ENCODER;
 extern PWM_Base_t *Esp_PWM;
 extern TIMER_Base_t *Esp_TIMER;
+extern UART_Base_t *Esp_UART;
 extern WIFI_Base_t *Esp_WIFI;
 
 #endif

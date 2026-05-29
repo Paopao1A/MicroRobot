@@ -8,11 +8,12 @@
 
 #define APP_SUBSCRIBER_TWIST_HANDLE_NUM 1
 
-#define APP_CMD_VEL_TOPIC              "cmd_vel"//閫熷害鍜岃閫熷害鐩爣璇濋
-#define APP_WHEEL_CIRCUMFERENCE_M      0.1508f //杞瓙鍛ㄩ暱锛屽崟浣嶏細绫?
-#define APP_SPEED_TARGET_MAX_RPM       200.0f   //鏈€澶ч€熷害鐩爣锛屽崟浣嶏細RPM
-#define APP_ANGULAR_TARGET_MAX_RADPS   2.0f    //鏈€澶ц閫熷害鐩爣锛屽崟浣嶏細寮у害/绉?
-#define APP_CMD_VEL_TIMEOUT_MS         3000  //閫熷害鍜岃閫熷害鐩爣瓒呮椂鏃堕棿锛屽崟浣嶏細姣
+#define APP_CMD_VEL_TOPIC              "cmd_vel"//速度角速度目标话题
+#define APP_WHEEL_CIRCUMFERENCE_M      0.1508f //轮子半径，单位：米
+#define APP_SPEED_TARGET_MAX_RPM       200.0f   //最大转速，单位：RPM
+#define APP_ANGULAR_TARGET_MAX_RADPS   2.0f    //最大角速度，单位：弧度/秒
+#define APP_CMD_VEL_TIMEOUT_MS         3000  //超时时间，单位：毫秒
+#define APP_CMD_VEL_LOG_ENABLE         0
 
 typedef struct
 {

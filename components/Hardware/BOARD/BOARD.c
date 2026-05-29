@@ -3,9 +3,11 @@
 #include "BEEP_CC.h"
 #include "Bluetooth_CC.h"
 #include "IMU_CC.h"
+#include "LIDAR_CC.h"
 #include "LED.h"
 #include "PWM_CC.h"
 #include "TIMER_CC.h"
+#include "UART_CC.h"
 #include "WIFI_CC.h"
 
 LED_Base_t *Esp_LED;
@@ -13,9 +15,11 @@ BEEP_Base_t *Esp_BEEP;
 ADC_Base_t *Battery_ADC;
 I2C_Base_t *Esp_I2C;
 IMU_Base_t *Esp_IMU;
+LIDAR_Base_t *Esp_LIDAR;
 ENCODER_Base_t *Esp_ENCODER;
 PWM_Base_t *Esp_PWM;
 TIMER_Base_t *Esp_TIMER;
+UART_Base_t *Esp_UART;
 WIFI_Base_t *Esp_WIFI;
 
 static ESPLED_Class_t s_led;
@@ -24,9 +28,11 @@ static ESPBLUETOOTH_Class_t s_bluetooth;
 static ESPADC_Class_t s_battery_adc;
 static ESPI2C_Class_t s_i2c;
 static ESPIMU_Class_t s_imu;
+static ESPLIDAR_Class_t s_lidar;
 static ESPENCODER_Class_t s_encoder;
 static ESPPWM_Class_t s_pwm;
 static ESPTIMER_Class_t s_timer;
+static ESPUART_Class_t s_uart;
 static ESPWIFI_Class_t s_wifi;
 
 //初始化板级硬件，所有硬件都在这里初始化，并将基类指针赋值给全局变量，供应用层调用
@@ -67,6 +73,9 @@ void BOARD_Init(void)
     ESPIMU_Init(&s_imu, "icm42670p", ICM42670P_I2C_ADDR);//初始化IMU
     Esp_IMU = &s_imu.base;
 
+    ESPLIDAR_Init(&s_lidar, "ms200_lidar");//初始化雷达协议解析器
+    Esp_LIDAR = &s_lidar.base;
+
     ESPENCODER_Init(&s_encoder, "esp_encoder");//初始化编码器
     Esp_ENCODER = &s_encoder.base;
 
@@ -76,6 +85,16 @@ void BOARD_Init(void)
     ESPTIMER_Init(&s_timer, "esp_timer", TIMER_PERIOD_US);//初始化定时器
     Esp_TIMER = &s_timer.base;
     TIMER_Start();
+
+    ESPUART_Init(&s_uart,       //初始化UART
+                 "lidar_uart",
+                 LIDAR_UART_NUM,
+                 LIDAR_UART_TX_GPIO,
+                 LIDAR_UART_RX_GPIO,
+                 LIDAR_UART_BAUD_RATE,
+                 LIDAR_UART_RX_BUFFER_SIZE,
+                 LIDAR_UART_TX_BUFFER_SIZE);
+    Esp_UART = &s_uart.base;
 
     ESPWIFI_Init(&s_wifi, "esp_wifi", WIFI_SSID, WIFI_PASSWORD, WIFI_MAXIMUM_RETRY);//初始化WIFI
     Esp_WIFI = &s_wifi.base;

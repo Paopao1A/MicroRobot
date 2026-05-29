@@ -18,26 +18,34 @@ set(src_dirs
             hardware/TIMER
             hardware/TIMER/TIMER_CC
             hardware/TIMER/TIMER_PC
+            hardware/Driver/UART
+            hardware/Driver/UART/UART_CC
+            hardware/Driver/UART/UART_PC
             hardware/WIFI
             hardware/WIFI/WIFI_CC
             hardware/WIFI/WIFI_PC
             hardware/Bluetooth
             hardware/Bluetooth/Bluetooth_CC
             hardware/Bluetooth/Bluetooth_PC
-            hardware/I2C
-            hardware/I2C/I2C_CC
-            hardware/I2C/I2C_PC
+            hardware/Driver/I2C
+            hardware/Driver/I2C/I2C_CC
+            hardware/Driver/I2C/I2C_PC
+            hardware/LIDAR
+            hardware/LIDAR/LIDAR_CC
+            hardware/LIDAR/LIDAR_PC
             hardware/PWM
             hardware/PWM/PWM_CC
             hardware/PWM/PWM_PC
             hardware/BOARD
             App/App_Init
             App/App_Publisher_Imu
+            App/App_Publisher_LaserScan
             App/App_Publisher_Odom
             App/App_Subscriber_Twist
             App/App_Bluetooth
             Task/Task_Init
             Task/Task_IMU
+            Task/Task_Lidar
             Task/Task_MotionControl
             Task/Task_Odometry
             Task/Task_LedControl
@@ -64,15 +72,21 @@ set(include_dirs
             hardware/TIMER
             hardware/TIMER/TIMER_CC
             hardware/TIMER/TIMER_PC
+            hardware/Driver/UART
+            hardware/Driver/UART/UART_CC
+            hardware/Driver/UART/UART_PC
             hardware/WIFI
             hardware/WIFI/WIFI_CC
             hardware/WIFI/WIFI_PC
             hardware/Bluetooth
             hardware/Bluetooth/Bluetooth_CC
             hardware/Bluetooth/Bluetooth_PC
-            hardware/I2C
-            hardware/I2C/I2C_CC
-            hardware/I2C/I2C_PC
+            hardware/Driver/I2C
+            hardware/Driver/I2C/I2C_CC
+            hardware/Driver/I2C/I2C_PC
+            hardware/LIDAR
+            hardware/LIDAR/LIDAR_CC
+            hardware/LIDAR/LIDAR_PC
             hardware/PWM
             hardware/PWM/PWM_CC
             hardware/PWM/PWM_PC
@@ -80,11 +94,13 @@ set(include_dirs
             APP
             App/App_Init
             App/App_Publisher_Imu
+            App/App_Publisher_LaserScan
             App/App_Publisher_Odom
             App/App_Subscriber_Twist
             App/App_Bluetooth
             Task/Task_Init
             Task/Task_IMU
+            Task/Task_Lidar
             Task/Task_MotionControl
             Task/Task_Odometry
             Task/Task_LedControl
