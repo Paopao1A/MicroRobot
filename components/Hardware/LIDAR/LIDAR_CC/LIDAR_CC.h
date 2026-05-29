@@ -6,8 +6,8 @@
 
 #include "LIDAR_PC.h"
 
-#define MS200_HEAD_1          0xAA
-#define MS200_HEAD_2          0x55
+#define MS200_HEAD_1          0xAA  //数据包头1,用于最开始的上电后会辅出一次SN码；
+#define MS200_HEAD_2          0x55  //数据包头2
 #define MS200_TAIL_1          0x31
 #define MS200_TAIL_2          0xF2
 #define MS200_FLAG_SN         0x01
@@ -16,13 +16,13 @@
 #define MS200_BUF_MAX         100
 #define MS200_POINT_PER_PACK  12
 
-typedef struct __attribute__((packed))
+typedef struct __attribute__((packed))//测量点数据结构体
 {
     uint16_t Distance;
     uint8_t Intensity;
 } MS200_Point_t;
 
-typedef struct __attribute__((packed))
+typedef struct __attribute__((packed))//数据包结构体
 {
     uint8_t Header;
     uint8_t Count;
@@ -38,7 +38,7 @@ typedef struct
 {
     LIDAR_Base_t base;
     uint8_t rx_protocol_buf[MS200_BUF_MAX];
-    MS200_Package_t package;
+    MS200_Package_t package;//当前数据包
     LIDAR_Scan_t scan;
     bool has_new_scan;
 } ESPLIDAR_Class_t;

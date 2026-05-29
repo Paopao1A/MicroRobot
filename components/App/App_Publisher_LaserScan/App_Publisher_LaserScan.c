@@ -34,6 +34,7 @@ static void App_Publisher_LaserScanSetStamp(void)
     s_laser_scan_msg.header.stamp.nanosec = (uint32_t)(Time_Ns % 1000000000LL);
 }
 
+//“方向反转 + 180 度安装角补偿”映射索引，一般用于处理雷达 0 度方向和车体 base_link 前方不一致的问题。
 static uint16_t App_Publisher_LaserScanMapIndex(uint16_t Index)
 {
     uint16_t SourceIndex = (APP_LASER_SCAN_POINT_NUM - Index) % APP_LASER_SCAN_POINT_NUM;
@@ -52,12 +53,12 @@ static uint16_t App_Publisher_LaserScanMapIndex(uint16_t Index)
 
 static void App_Publisher_LaserScanFillMsg(const Task_Lidar_Scan_t *Scan)
 {
-    App_Publisher_LaserScanSetStamp();
+    App_Publisher_LaserScanSetStamp();//设置时间戳
 
     for (uint16_t i = 0; i < APP_LASER_SCAN_POINT_NUM; i++)
     {
-        uint16_t SourceIndex = App_Publisher_LaserScanMapIndex(i);
-        float Range_M = (float)Scan->Distance_Mm[SourceIndex] / 1000.0f;
+        uint16_t SourceIndex = App_Publisher_LaserScanMapIndex(i);//映射索引
+        float Range_M = (float)Scan->Scan.Points[SourceIndex].Distance_Mm / 1000.0f;//距离
 
         if (Range_M < APP_LASER_SCAN_RANGE_MIN_M || Range_M > APP_LASER_SCAN_RANGE_MAX_M)
         {
@@ -67,10 +68,11 @@ static void App_Publisher_LaserScanFillMsg(const Task_Lidar_Scan_t *Scan)
         {
             s_laser_scan_ranges[i] = Range_M;
         }
-        s_laser_scan_intensities[i] = (float)Scan->Intensity[SourceIndex];
+        s_laser_scan_intensities[i] = (float)Scan->Scan.Points[SourceIndex].Intensity;
     }
 }
 
+//这里的定时回调不是硬件中断，是freertos任务，所以数据需要进行竟态保护
 static void App_Publisher_LaserScanTimerCallback(rcl_timer_t *timer, int64_t last_call_time)
 {
     (void)last_call_time;
@@ -87,8 +89,8 @@ static void App_Publisher_LaserScanTimerCallback(rcl_timer_t *timer, int64_t las
         return;
     }
 
-    App_Publisher_LaserScanFillMsg(&Scan);
-    rcl_ret_t ret = rcl_publish(&s_laser_scan_publisher, &s_laser_scan_msg, NULL);
+    App_Publisher_LaserScanFillMsg(&Scan);//填充消息
+    rcl_ret_t ret = rcl_publish(&s_laser_scan_publisher, &s_laser_scan_msg, NULL);//发布消息
     (void)ret;
 }
 
@@ -97,22 +99,22 @@ static void App_Publisher_LaserScanInitMsg(void)
     sensor_msgs__msg__LaserScan__init(&s_laser_scan_msg);
 
     rosidl_runtime_c__String__assign(&s_laser_scan_msg.header.frame_id, APP_LASER_SCAN_FRAME_ID);
-    s_laser_scan_msg.angle_min = -(float)M_PI;
-    s_laser_scan_msg.angle_max = (float)M_PI;
-    s_laser_scan_msg.angle_increment = (float)M_PI / 180.0f;
-    s_laser_scan_msg.time_increment = 0.0f;
-    s_laser_scan_msg.scan_time = (float)APP_LASER_SCAN_PUBLISH_PERIOD_MS / 1000.0f;
-    s_laser_scan_msg.range_min = APP_LASER_SCAN_RANGE_MIN_M;
-    s_laser_scan_msg.range_max = APP_LASER_SCAN_RANGE_MAX_M;
+    s_laser_scan_msg.angle_min = -(float)M_PI;//最小角度
+    s_laser_scan_msg.angle_max = (float)M_PI;//最大角度
+    s_laser_scan_msg.angle_increment =  (float)M_PI / 180.0f;//角度增量
+    s_laser_scan_msg.time_increment = 0.0f;//时间增量
+    s_laser_scan_msg.scan_time = (float)APP_LASER_SCAN_PUBLISH_PERIOD_MS / 1000.0f;//扫描时间
+    s_laser_scan_msg.range_min = APP_LASER_SCAN_RANGE_MIN_M;//最小距离
+    s_laser_scan_msg.range_max = APP_LASER_SCAN_RANGE_MAX_M;//最大距离
 
     memset(s_laser_scan_ranges, 0, sizeof(s_laser_scan_ranges));
     memset(s_laser_scan_intensities, 0, sizeof(s_laser_scan_intensities));
-    s_laser_scan_msg.ranges.data = s_laser_scan_ranges;
-    s_laser_scan_msg.ranges.size = APP_LASER_SCAN_POINT_NUM;
-    s_laser_scan_msg.ranges.capacity = APP_LASER_SCAN_POINT_NUM;
-    s_laser_scan_msg.intensities.data = s_laser_scan_intensities;
-    s_laser_scan_msg.intensities.size = APP_LASER_SCAN_POINT_NUM;
-    s_laser_scan_msg.intensities.capacity = APP_LASER_SCAN_POINT_NUM;
+    s_laser_scan_msg.ranges.data = s_laser_scan_ranges;//距离数组
+    s_laser_scan_msg.ranges.size = APP_LASER_SCAN_POINT_NUM;//距离数组大小
+    s_laser_scan_msg.ranges.capacity = APP_LASER_SCAN_POINT_NUM;//距离数组容量
+    s_laser_scan_msg.intensities.data = s_laser_scan_intensities;//强度数组
+    s_laser_scan_msg.intensities.size = APP_LASER_SCAN_POINT_NUM;//强度数组大小
+    s_laser_scan_msg.intensities.capacity = APP_LASER_SCAN_POINT_NUM;//强度数组容量
 }
 
 rcl_ret_t App_Publisher_LaserScan_Init(rcl_node_t *node,
@@ -126,7 +128,7 @@ rcl_ret_t App_Publisher_LaserScan_Init(rcl_node_t *node,
         return RCL_RET_INVALID_ARGUMENT;
     }
 
-    App_Publisher_LaserScanInitMsg();
+    App_Publisher_LaserScanInitMsg();//初始化消息
 
     ret = rclc_publisher_init_default(&s_laser_scan_publisher,
                                       node,

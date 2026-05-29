@@ -11,8 +11,7 @@
 
 typedef struct
 {
-    uint16_t Distance_Mm[TASK_LIDAR_SCAN_POINT_NUM];
-    uint8_t Intensity[TASK_LIDAR_SCAN_POINT_NUM];
+    LIDAR_Scan_t Scan;
     bool Is_Valid;
     uint32_t Tick_Ms;
     uint32_t Update_Count;

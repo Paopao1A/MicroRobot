@@ -1,14 +1,14 @@
 #include "Task_Lidar.h"
 
 #include "freertos/FreeRTOS.h"
-#include "freertos/portmacro.h"
+#include "freertos/semphr.h"
 #include "freertos/task.h"
 #include "UART.h"
 
 #define TASK_LIDAR_STACK_SIZE 4096
 #define TASK_LIDAR_PRIORITY   6
 
-static portMUX_TYPE s_Lidar_Lock = portMUX_INITIALIZER_UNLOCKED;
+static SemaphoreHandle_t s_Lidar_Mutex = NULL;
 static Task_Lidar_Scan_t s_Lidar_Scan = {0};
 
 static void Task_Lidar(void *pvParameters);
@@ -16,6 +16,15 @@ static void Task_Lidar(void *pvParameters);
 void Task_Lidar_Init(void)
 {
     TaskHandle_t xTaskHandle = NULL;
+
+    if (s_Lidar_Mutex == NULL)
+    {
+        s_Lidar_Mutex = xSemaphoreCreateMutex();
+        if (s_Lidar_Mutex == NULL)
+        {
+            return;
+        }
+    }
 
     xTaskCreate(Task_Lidar,
                 "Task_Lidar",
@@ -25,6 +34,7 @@ void Task_Lidar_Init(void)
                 &xTaskHandle);
 }
 
+//获取当前扫描数据的快照，用于APP层调用
 void Task_Lidar_GetScan(Task_Lidar_Scan_t *Scan)
 {
     if (Scan == NULL)
@@ -32,29 +42,36 @@ void Task_Lidar_GetScan(Task_Lidar_Scan_t *Scan)
         return;
     }
 
-    portENTER_CRITICAL(&s_Lidar_Lock);
-    *Scan = s_Lidar_Scan;
-    portEXIT_CRITICAL(&s_Lidar_Lock);
+    if (s_Lidar_Mutex == NULL)
+    {
+        return;
+    }
+
+    if (xSemaphoreTake(s_Lidar_Mutex, portMAX_DELAY) == pdTRUE)
+    {
+        *Scan = s_Lidar_Scan;
+        xSemaphoreGive(s_Lidar_Mutex);
+    }
 }
 
 static void Task_Lidar_UpdateSnapshot(void)
 {
     LIDAR_Scan_t LidarScan = {0};
-    Task_Lidar_Scan_t Scan = {0};
 
-    LIDAR_GetScan(&LidarScan);
-    for (uint16_t i = 0; i < TASK_LIDAR_SCAN_POINT_NUM; i++)
+    LIDAR_GetScan(&LidarScan);//获取当前扫描数据
+    if (s_Lidar_Mutex == NULL)
     {
-        Scan.Distance_Mm[i] = LidarScan.Points[i].Distance_Mm;
-        Scan.Intensity[i] = LidarScan.Points[i].Intensity;
+        return;
     }
-    Scan.Is_Valid = true;
-    Scan.Tick_Ms = (uint32_t)(xTaskGetTickCount() * portTICK_PERIOD_MS);
 
-    portENTER_CRITICAL(&s_Lidar_Lock);
-    Scan.Update_Count = s_Lidar_Scan.Update_Count + 1;
-    s_Lidar_Scan = Scan;
-    portEXIT_CRITICAL(&s_Lidar_Lock);
+    if (xSemaphoreTake(s_Lidar_Mutex, portMAX_DELAY) == pdTRUE)//互斥锁保护
+    {
+        s_Lidar_Scan.Scan = LidarScan;
+        s_Lidar_Scan.Is_Valid = true;
+        s_Lidar_Scan.Tick_Ms = (uint32_t)(xTaskGetTickCount() * portTICK_PERIOD_MS);
+        s_Lidar_Scan.Update_Count++;
+        xSemaphoreGive(s_Lidar_Mutex);
+    }
 }
 
 static void Task_Lidar(void *pvParameters)
@@ -71,11 +88,11 @@ static void Task_Lidar(void *pvParameters)
         {
             for (int i = 0; i < ReadLen; i++)
             {
-                LIDAR_ReceiveByte(ReadBuffer[i]);
+                LIDAR_ReceiveByte(ReadBuffer[i]);//处理接收到的字节
             }
         }
 
-        if (LIDAR_HasNewScan())
+        if (LIDAR_HasNewScan())//检查是否有新的扫描数据
         {
             LIDAR_ClearNewScan();
             TickType_t CurrentTick = xTaskGetTickCount();

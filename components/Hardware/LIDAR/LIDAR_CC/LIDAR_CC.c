@@ -17,6 +17,7 @@ static const LIDAR_Ops_t ESP_LIDAR_Ops = {
     .LIDAR_GET_SCAN = ESPLIDAR_GetScan,
 };
 
+//CRC8校验表
 static const uint8_t CRC_TABLE[256] = {
     0x00, 0x4d, 0x9a, 0xd7, 0x79, 0x34, 0xe3, 0xae, 0xf2, 0xbf, 0x68, 0x25, 0x8b, 0xc6, 0x11, 0x5c,
     0xa9, 0xe4, 0x33, 0x7e, 0xd0, 0x9d, 0x4a, 0x07, 0x5b, 0x16, 0xc1, 0x8c, 0x22, 0x6f, 0xb8, 0xf5,
@@ -36,6 +37,7 @@ static const uint8_t CRC_TABLE[256] = {
     0xf4, 0xb9, 0x6e, 0x23, 0x8d, 0xc0, 0x17, 0x5a, 0x06, 0x4b, 0x9c, 0xd1, 0x7f, 0x32, 0xe5, 0xa8,
 };
 
+//计算CRC8校验值
 static uint8_t ESPLIDAR_CalcCrc8(const uint8_t *buf, uint8_t len)
 {
     uint8_t crc = 0x00;
@@ -48,38 +50,40 @@ static uint8_t ESPLIDAR_CalcCrc8(const uint8_t *buf, uint8_t len)
     return crc;
 }
 
+//解析数据包
 static esp_err_t ESPLIDAR_ParsePackage(const uint8_t *buf, MS200_Package_t *package)
 {
-    uint8_t point_count = buf[1] & 0x1F;
-    uint8_t buf_len = point_count * 3 + 11;
+    uint8_t point_count = buf[1] & 0x1F;//多少个测量点数
+    uint8_t buf_len = point_count * 3 + 11;//数据包总长
 
     if ((point_count == 0) || (point_count > MS200_POINT_PER_PACK))
     {
         return ESP_FAIL;
     }
 
-    if (ESPLIDAR_CalcCrc8(buf, buf_len - 1) != buf[buf_len - 1])
+    if (ESPLIDAR_CalcCrc8(buf, buf_len - 1) != buf[buf_len - 1])//校验CRC8校验值
     {
         return ESP_FAIL;
     }
 
-    package->Header = buf[0];
-    package->Count = point_count;
-    package->Speed = ((uint16_t)buf[3] << 8) | buf[2];
-    package->Start_Angle = ((uint16_t)buf[5] << 8) | buf[4];
-    package->End_Angle = ((uint16_t)buf[buf_len - 4] << 8) | buf[buf_len - 5];
-    package->Time_Stamp = ((uint16_t)buf[buf_len - 2] << 8) | buf[buf_len - 3];
-    package->Crc8 = buf[buf_len - 1];
+    package->Header = buf[0];//数据包头
+    package->Count = point_count;//测量点数
+    package->Speed = ((uint16_t)buf[3] << 8) | buf[2];//转速
+    package->Start_Angle = ((uint16_t)buf[5] << 8) | buf[4];//起始角度
+    package->End_Angle = ((uint16_t)buf[buf_len - 4] << 8) | buf[buf_len - 5];//结束角度
+    package->Time_Stamp = ((uint16_t)buf[buf_len - 2] << 8) | buf[buf_len - 3];//时间戳
+    package->Crc8 = buf[buf_len - 1];//CRC8校验值
 
     for (uint8_t i = 0; i < point_count; i++)
     {
-        package->Points[i].Distance = ((uint16_t)buf[3 * i + 7] << 8) | buf[3 * i + 6];
-        package->Points[i].Intensity = buf[3 * i + 8];
+        package->Points[i].Distance = ((uint16_t)buf[3 * i + 7] << 8) | buf[3 * i + 6];//每一个测量点的距离
+        package->Points[i].Intensity = buf[3 * i + 8];//每一个测量点的强度
     }
 
     return ESP_OK;
 }
 
+//更新扫描数据
 static void ESPLIDAR_UpdateScan(ESPLIDAR_Class_t *class)
 {
     uint16_t step_angle = 0;
@@ -91,24 +95,25 @@ static void ESPLIDAR_UpdateScan(ESPLIDAR_Class_t *class)
 
     if (class->package.End_Angle > class->package.Start_Angle)
     {
-        step_angle = (class->package.End_Angle - class->package.Start_Angle) / (class->package.Count - 1);
+        step_angle = (class->package.End_Angle - class->package.Start_Angle) / (class->package.Count - 1);//计算角度间隔
     }
-    else
+    else//处理结束角度小于起始角度的情况，注意数据包中的角度单位是0.01°
     {
-        step_angle = (36000 + class->package.End_Angle - class->package.Start_Angle) / (class->package.Count - 1);
+        step_angle = (36000 + class->package.End_Angle - class->package.Start_Angle) / (class->package.Count - 1);//计算角度间隔
     }
 
-    for (uint8_t i = 0; i < class->package.Count; i++)
+    for (uint8_t i = 0; i < class->package.Count; i++)//处理每一个点的数据
     {
-        uint16_t angle = ((class->package.Start_Angle + i * step_angle) / 100) % LIDAR_POINT_MAX;
-        class->scan.Points[angle].Distance_Mm = class->package.Points[i].Distance;
-        class->scan.Points[angle].Intensity = class->package.Points[i].Intensity;
+        uint16_t angle = ((class->package.Start_Angle + i * step_angle) / 100) % LIDAR_POINT_MAX;//计算真实角度，单位转化为°
+        class->scan.Points[angle].Distance_Mm = class->package.Points[i].Distance;//对应角度的距离
+        class->scan.Points[angle].Intensity = class->package.Points[i].Intensity;//对应角度的强度
     }
 
     class->scan.Size = LIDAR_POINT_MAX;
     class->has_new_scan = true;
 }
 
+//重置接收缓冲区
 static void ESPLIDAR_ResetRx(uint8_t *rx_flag, uint8_t *rx_buf_len, uint8_t *rx_buf_index)
 {
     *rx_flag = 0;
@@ -116,6 +121,7 @@ static void ESPLIDAR_ResetRx(uint8_t *rx_flag, uint8_t *rx_buf_len, uint8_t *rx_
     *rx_buf_index = 0;
 }
 
+//接收字节数据
 static void ESPLIDAR_ReceiveByte(LIDAR_Base_t *self, uint8_t data)
 {
     ESPLIDAR_Class_t *class = container_of(self, ESPLIDAR_Class_t, base);
@@ -126,20 +132,20 @@ static void ESPLIDAR_ReceiveByte(LIDAR_Base_t *self, uint8_t data)
     switch (rx_flag)
     {
     case 0:
-        if (data == MS200_HEAD_1)
+        if (data == MS200_HEAD_1)//如果接受到数据包头1
         {
-            rx_flag = 1;
+            rx_flag = 1;//进入初始状态1，主要是看雷达上电初始化是否正常
             class->rx_protocol_buf[0] = MS200_HEAD_1;
         }
-        else if (data == MS200_DATA_START)
-        {
+        else if (data == MS200_DATA_START)//如果接受到数据包头2，表示正常雷达数据来了，开始接收
+               {
             rx_flag = 5;
             class->rx_protocol_buf[0] = MS200_DATA_START;
         }
         break;
 
     case 1:
-        rx_flag = (data == MS200_HEAD_2) ? 2 : 0;
+        rx_flag = (data == MS200_HEAD_2) ? 2 : 0;//如果成功接收到数据包头2，进入状态2
         class->rx_protocol_buf[1] = data;
         break;
 
@@ -155,7 +161,7 @@ static void ESPLIDAR_ReceiveByte(LIDAR_Base_t *self, uint8_t data)
         rx_buf_index = 0;
         break;
 
-    case 4:
+    case 4://处理完开机的SN码，开始接收正常数据包
         class->rx_protocol_buf[rx_flag + rx_buf_index] = data;
         rx_buf_index++;
         if (rx_buf_index >= rx_buf_len)
@@ -171,10 +177,10 @@ static void ESPLIDAR_ReceiveByte(LIDAR_Base_t *self, uint8_t data)
         break;
 
     case 5:
-        class->rx_protocol_buf[1] = data;
+        class->rx_protocol_buf[1] = data;//低五位表示一个包的测量数量
         rx_flag = 6;
-        rx_buf_index = 2;
-        rx_buf_len = (data & 0x1F) * 3 + 11;
+        rx_buf_index = 2;//数据偏移量，从2开始
+        rx_buf_len = (data & 0x1F) * 3 + 11;//数据包最长长度
         if (rx_buf_len > MS200_BUF_MAX)
         {
             ESPLIDAR_ResetRx(&rx_flag, &rx_buf_len, &rx_buf_index);
@@ -184,10 +190,10 @@ static void ESPLIDAR_ReceiveByte(LIDAR_Base_t *self, uint8_t data)
     case 6:
         class->rx_protocol_buf[rx_buf_index] = data;
         rx_buf_index++;
-        if (rx_buf_index >= rx_buf_len)
+        if (rx_buf_index >= rx_buf_len)//如果数据包接收完成，用接收长度判断是否完成数据包接收，因为没有包尾校验
         {
-            ESPLIDAR_ResetRx(&rx_flag, &rx_buf_len, &rx_buf_index);
-            if (ESPLIDAR_ParsePackage(class->rx_protocol_buf, &class->package) == ESP_OK)
+            ESPLIDAR_ResetRx(&rx_flag, &rx_buf_len, &rx_buf_index);//重置接收缓冲区
+            if (ESPLIDAR_ParsePackage(class->rx_protocol_buf, &class->package) == ESP_OK)//解析数据包
             {
                 ESPLIDAR_UpdateScan(class);
             }
@@ -206,18 +212,21 @@ static void ESPLIDAR_ReceiveByte(LIDAR_Base_t *self, uint8_t data)
     }
 }
 
+//检查是否有新的扫描数据
 static bool ESPLIDAR_HasNewScan(LIDAR_Base_t *self)
 {
     ESPLIDAR_Class_t *class = container_of(self, ESPLIDAR_Class_t, base);
     return class->has_new_scan;
 }
 
+//清除新的扫描数据标志
 static void ESPLIDAR_ClearNewScan(LIDAR_Base_t *self)
 {
     ESPLIDAR_Class_t *class = container_of(self, ESPLIDAR_Class_t, base);
     class->has_new_scan = false;
 }
 
+//获取扫描数据,用于任务层调用
 static void ESPLIDAR_GetScan(LIDAR_Base_t *self, LIDAR_Scan_t *scan)
 {
     ESPLIDAR_Class_t *class = container_of(self, ESPLIDAR_Class_t, base);
