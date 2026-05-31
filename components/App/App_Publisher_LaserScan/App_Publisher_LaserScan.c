@@ -58,7 +58,7 @@ static void App_Publisher_LaserScanFillMsg(const Task_Lidar_Scan_t *Scan)
     for (uint16_t i = 0; i < APP_LASER_SCAN_POINT_NUM; i++)
     {
         uint16_t SourceIndex = App_Publisher_LaserScanMapIndex(i);//映射索引
-        float Range_M = (float)Scan->Scan.Points[SourceIndex].Distance_Mm / 1000.0f;//距离
+        float Range_M = (float)Scan->Scan.Points[SourceIndex].Distance_Mm / 1000.0f;//距离，mm转换为m
 
         if (Range_M < APP_LASER_SCAN_RANGE_MIN_M || Range_M > APP_LASER_SCAN_RANGE_MAX_M)
         {

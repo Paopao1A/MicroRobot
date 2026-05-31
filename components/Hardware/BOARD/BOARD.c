@@ -6,6 +6,7 @@
 #include "LIDAR_CC.h"
 #include "LED.h"
 #include "PWM_CC.h"
+#include "SERVO_CC.h"
 #include "TIMER_CC.h"
 #include "UART_CC.h"
 #include "WIFI_CC.h"
@@ -18,6 +19,7 @@ IMU_Base_t *Esp_IMU;
 LIDAR_Base_t *Esp_LIDAR;
 ENCODER_Base_t *Esp_ENCODER;
 PWM_Base_t *Esp_PWM;
+SERVO_Base_t *Esp_SERVO;
 TIMER_Base_t *Esp_TIMER;
 UART_Base_t *Esp_UART;
 WIFI_Base_t *Esp_WIFI;
@@ -31,6 +33,7 @@ static ESPIMU_Class_t s_imu;
 static ESPLIDAR_Class_t s_lidar;
 static ESPENCODER_Class_t s_encoder;
 static ESPPWM_Class_t s_pwm;
+static ESPSERVO_Class_t s_servo;
 static ESPTIMER_Class_t s_timer;
 static ESPUART_Class_t s_uart;
 static ESPWIFI_Class_t s_wifi;
@@ -81,6 +84,9 @@ void BOARD_Init(void)
 
     ESPPWM_Init(&s_pwm, "esp_pwm");//初始化PWM电机
     Esp_PWM = &s_pwm.base;
+
+    ESPSERVO_Init(&s_servo, "esp_servo");//初始化舵机
+    Esp_SERVO = &s_servo.base;
 
     ESPTIMER_Init(&s_timer, "esp_timer", TIMER_PERIOD_US);//初始化定时器
     Esp_TIMER = &s_timer.base;

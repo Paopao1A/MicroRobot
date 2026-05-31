@@ -36,6 +36,9 @@ set(src_dirs
             hardware/PWM
             hardware/PWM/PWM_CC
             hardware/PWM/PWM_PC
+            hardware/SERVO
+            hardware/SERVO/SERVO_CC
+            hardware/SERVO/SERVO_PC
             hardware/BOARD
             App/App_Init
             App/App_Publisher_Imu
@@ -90,6 +93,9 @@ set(include_dirs
             hardware/PWM
             hardware/PWM/PWM_CC
             hardware/PWM/PWM_PC
+            hardware/SERVO
+            hardware/SERVO/SERVO_CC
+            hardware/SERVO/SERVO_PC
             hardware/BOARD
             APP
             App/App_Init

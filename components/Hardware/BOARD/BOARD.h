@@ -10,6 +10,7 @@
 #include "LIDAR.h"
 #include "LED.h"
 #include "PWM.h"
+#include "SERVO.h"
 #include "TIMER.h"
 #include "UART.h"
 #include "WIFI.h"
@@ -25,6 +26,7 @@ extern IMU_Base_t *Esp_IMU;
 extern LIDAR_Base_t *Esp_LIDAR;
 extern ENCODER_Base_t *Esp_ENCODER;
 extern PWM_Base_t *Esp_PWM;
+extern SERVO_Base_t *Esp_SERVO;
 extern TIMER_Base_t *Esp_TIMER;
 extern UART_Base_t *Esp_UART;
 extern WIFI_Base_t *Esp_WIFI;
