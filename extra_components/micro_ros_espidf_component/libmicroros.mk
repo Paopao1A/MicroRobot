@@ -43,7 +43,7 @@ $(EXTENSIONS_DIR)/micro_ros_dev/install:
 	git clone -b humble https://github.com/ament/googletest src/googletest; \
 	git clone -b humble https://github.com/ros2/ament_cmake_ros src/ament_cmake_ros; \
 	git clone -b humble https://github.com/ament/ament_index src/ament_index; \
-	colcon build --cmake-args -DBUILD_TESTING=OFF -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=gcc;
+	colcon build --cmake-args -G Ninja -DBUILD_TESTING=OFF -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++;
 
 $(EXTENSIONS_DIR)/micro_ros_src/src:
 	rm -rf micro_ros_src; \
@@ -72,7 +72,7 @@ $(EXTENSIONS_DIR)/micro_ros_src/src:
 	git clone -b humble https://github.com/ros2/test_interface_files src/test_interface_files; \
 	git clone -b humble https://github.com/ros2/rmw_implementation src/rmw_implementation; \
 	git clone -b humble https://github.com/ros2/rcl_logging src/rcl_logging; \
-	git clone -b humble https://gitlab.com/ros-tracing/ros2_tracing src/ros2_tracing; \
+	git clone -b humble https://github.com/ros2/ros2_tracing src/ros2_tracing; \
 	git clone -b humble https://github.com/micro-ROS/micro_ros_utilities src/micro_ros_utilities; \
     touch src/rosidl/rosidl_typesupport_introspection_cpp/COLCON_IGNORE; \
     touch src/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE; \
@@ -93,6 +93,7 @@ $(EXTENSIONS_DIR)/micro_ros_src/install: $(EXTENSIONS_DIR)/esp32_toolchain.cmake
 		--packages-ignore-regex=.*_cpp \
 		--metas $(EXTENSIONS_DIR)/colcon.meta $(APP_COLCON_META) \
 		--cmake-args \
+		-G Ninja \
 		"--no-warn-unused-cli" \
 		-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=OFF \
 		-DTHIRDPARTY=ON \

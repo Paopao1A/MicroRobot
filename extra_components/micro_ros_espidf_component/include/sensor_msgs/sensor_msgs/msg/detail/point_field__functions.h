@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.h.em
-// with input from sensor_msgs:msg/PointField.idl
+// with input from sensor_msgs:msg\PointField.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__POINT_FIELD__FUNCTIONS_H_

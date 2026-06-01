@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from lifecycle_msgs:srv/ChangeState.idl
+// with input from lifecycle_msgs:srv\ChangeState.idl
 // generated code does not contain a copyright notice
 #include "lifecycle_msgs/srv/detail/change_state__functions.h"
 

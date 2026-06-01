@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from std_msgs:msg/Int32.idl
+// with input from std_msgs:msg\Int32.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__INT32_H_

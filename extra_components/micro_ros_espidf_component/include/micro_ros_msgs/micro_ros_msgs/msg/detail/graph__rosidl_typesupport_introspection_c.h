@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from micro_ros_msgs:msg/Graph.idl
+// with input from micro_ros_msgs:msg\Graph.idl
 // generated code does not contain a copyright notice
 
 #ifndef MICRO_ROS_MSGS__MSG__DETAIL__GRAPH__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

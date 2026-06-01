@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from test_msgs:srv/BasicTypes.idl
+// with input from test_msgs:srv\BasicTypes.idl
 // generated code does not contain a copyright notice
 
 #ifndef TEST_MSGS__SRV__DETAIL__BASIC_TYPES__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from sensor_msgs:msg/JoyFeedback.idl
+// with input from sensor_msgs:msg\JoyFeedback.idl
 // generated code does not contain a copyright notice
 #include "sensor_msgs/msg/detail/joy_feedback__functions.h"
 

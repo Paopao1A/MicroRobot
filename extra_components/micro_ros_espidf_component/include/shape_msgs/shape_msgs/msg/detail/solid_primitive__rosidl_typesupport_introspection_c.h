@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from shape_msgs:msg/SolidPrimitive.idl
+// with input from shape_msgs:msg\SolidPrimitive.idl
 // generated code does not contain a copyright notice
 
 #ifndef SHAPE_MSGS__MSG__DETAIL__SOLID_PRIMITIVE__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

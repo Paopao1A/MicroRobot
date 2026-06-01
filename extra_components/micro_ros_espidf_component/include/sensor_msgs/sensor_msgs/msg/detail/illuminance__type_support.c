@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__type_support.c.em
-// with input from sensor_msgs:msg/Illuminance.idl
+// with input from sensor_msgs:msg\Illuminance.idl
 // generated code does not contain a copyright notice
 
 #include <stddef.h>

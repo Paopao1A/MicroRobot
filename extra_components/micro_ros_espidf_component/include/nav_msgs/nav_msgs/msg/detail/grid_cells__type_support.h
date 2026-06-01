@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from nav_msgs:msg/GridCells.idl
+// with input from nav_msgs:msg\GridCells.idl
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__MSG__DETAIL__GRID_CELLS__TYPE_SUPPORT_H_

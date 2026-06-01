@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from std_srvs:srv/Trigger.idl
+// with input from std_srvs:srv\Trigger.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_SRVS__SRV__TRIGGER_H_

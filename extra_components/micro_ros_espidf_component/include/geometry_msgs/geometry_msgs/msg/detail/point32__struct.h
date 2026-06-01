@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from geometry_msgs:msg/Point32.idl
+// with input from geometry_msgs:msg\Point32.idl
 // generated code does not contain a copyright notice
 
 #ifndef GEOMETRY_MSGS__MSG__DETAIL__POINT32__STRUCT_H_

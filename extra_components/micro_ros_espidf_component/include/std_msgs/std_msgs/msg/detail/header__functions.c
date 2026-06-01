@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from std_msgs:msg/Header.idl
+// with input from std_msgs:msg\Header.idl
 // generated code does not contain a copyright notice
 #include "std_msgs/msg/detail/header__functions.h"
 

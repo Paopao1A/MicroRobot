@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from nav_msgs:msg/OccupancyGrid.idl
+// with input from nav_msgs:msg\OccupancyGrid.idl
 // generated code does not contain a copyright notice
 #include "nav_msgs/msg/detail/occupancy_grid__functions.h"
 

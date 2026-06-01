@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from builtin_interfaces:msg/Time.idl
+// with input from builtin_interfaces:msg\Time.idl
 // generated code does not contain a copyright notice
 #include "builtin_interfaces/msg/detail/time__functions.h"
 

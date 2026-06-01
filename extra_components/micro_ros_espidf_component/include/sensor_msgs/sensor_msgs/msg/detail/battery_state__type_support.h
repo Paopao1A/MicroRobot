@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from sensor_msgs:msg/BatteryState.idl
+// with input from sensor_msgs:msg\BatteryState.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__BATTERY_STATE__TYPE_SUPPORT_H_

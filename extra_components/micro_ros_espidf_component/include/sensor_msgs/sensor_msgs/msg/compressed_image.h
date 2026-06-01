@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from sensor_msgs:msg/CompressedImage.idl
+// with input from sensor_msgs:msg\CompressedImage.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__COMPRESSED_IMAGE_H_

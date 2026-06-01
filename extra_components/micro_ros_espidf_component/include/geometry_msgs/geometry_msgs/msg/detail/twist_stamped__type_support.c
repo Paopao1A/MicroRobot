@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__type_support.c.em
-// with input from geometry_msgs:msg/TwistStamped.idl
+// with input from geometry_msgs:msg\TwistStamped.idl
 // generated code does not contain a copyright notice
 
 #include <stddef.h>

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from example_interfaces:msg/String.idl
+// with input from example_interfaces:msg\String.idl
 // generated code does not contain a copyright notice
 #include "example_interfaces/msg/detail/string__functions.h"
 

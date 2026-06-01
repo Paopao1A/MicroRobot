@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from std_srvs:srv/SetBool.idl
+// with input from std_srvs:srv\SetBool.idl
 // generated code does not contain a copyright notice
 #include "std_srvs/srv/detail/set_bool__functions.h"
 

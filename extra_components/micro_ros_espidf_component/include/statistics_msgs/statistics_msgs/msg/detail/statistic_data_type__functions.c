@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from statistics_msgs:msg/StatisticDataType.idl
+// with input from statistics_msgs:msg\StatisticDataType.idl
 // generated code does not contain a copyright notice
 #include "statistics_msgs/msg/detail/statistic_data_type__functions.h"
 

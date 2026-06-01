@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from lifecycle_msgs:msg/State.idl
+// with input from lifecycle_msgs:msg\State.idl
 // generated code does not contain a copyright notice
 
 #ifndef LIFECYCLE_MSGS__MSG__STATE_H_

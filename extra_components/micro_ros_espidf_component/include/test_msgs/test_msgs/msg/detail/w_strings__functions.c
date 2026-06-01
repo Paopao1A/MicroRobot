@@ -1,6 +1,6 @@
 ﻿// NOLINT: This file starts with a BOM since it contain non-ASCII characters
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from test_msgs:msg/WStrings.idl
+// with input from test_msgs:msg\WStrings.idl
 // generated code does not contain a copyright notice
 #include "test_msgs/msg/detail/w_strings__functions.h"
 

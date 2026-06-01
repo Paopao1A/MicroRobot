@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from sensor_msgs:msg/MultiDOFJointState.idl
+// with input from sensor_msgs:msg\MultiDOFJointState.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__MULTI_DOF_JOINT_STATE__STRUCT_H_

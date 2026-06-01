@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__type_support.c.em
-// with input from rosgraph_msgs:msg/Clock.idl
+// with input from rosgraph_msgs:msg\Clock.idl
 // generated code does not contain a copyright notice
 
 #include <stddef.h>

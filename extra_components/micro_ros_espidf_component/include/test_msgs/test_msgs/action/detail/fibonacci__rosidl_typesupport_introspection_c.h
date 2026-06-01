@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from test_msgs:action/Fibonacci.idl
+// with input from test_msgs:action\Fibonacci.idl
 // generated code does not contain a copyright notice
 
 #ifndef TEST_MSGS__ACTION__DETAIL__FIBONACCI__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

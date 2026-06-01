@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from sensor_msgs:msg/NavSatStatus.idl
+// with input from sensor_msgs:msg\NavSatStatus.idl
 // generated code does not contain a copyright notice
 #include "sensor_msgs/msg/detail/nav_sat_status__functions.h"
 

@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from sensor_msgs:msg/NavSatFix.idl
+// with input from sensor_msgs:msg\NavSatFix.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__NAV_SAT_FIX__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

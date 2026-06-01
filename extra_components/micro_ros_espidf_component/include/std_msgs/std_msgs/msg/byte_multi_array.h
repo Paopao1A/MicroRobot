@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from std_msgs:msg/ByteMultiArray.idl
+// with input from std_msgs:msg\ByteMultiArray.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__BYTE_MULTI_ARRAY_H_

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.h.em
-// with input from geometry_msgs:msg/Pose2D.idl
+// with input from geometry_msgs:msg\Pose2D.idl
 // generated code does not contain a copyright notice
 
 #ifndef GEOMETRY_MSGS__MSG__DETAIL__POSE2_D__FUNCTIONS_H_

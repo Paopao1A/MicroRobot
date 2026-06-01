@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from std_msgs:msg/Bool.idl
+// with input from std_msgs:msg\Bool.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__DETAIL__BOOL__STRUCT_H_

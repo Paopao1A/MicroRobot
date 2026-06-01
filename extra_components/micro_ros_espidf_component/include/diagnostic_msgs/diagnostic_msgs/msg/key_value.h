@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from diagnostic_msgs:msg/KeyValue.idl
+// with input from diagnostic_msgs:msg\KeyValue.idl
 // generated code does not contain a copyright notice
 
 #ifndef DIAGNOSTIC_MSGS__MSG__KEY_VALUE_H_

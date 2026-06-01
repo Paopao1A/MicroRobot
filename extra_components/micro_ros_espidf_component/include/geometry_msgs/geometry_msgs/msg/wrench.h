@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from geometry_msgs:msg/Wrench.idl
+// with input from geometry_msgs:msg\Wrench.idl
 // generated code does not contain a copyright notice
 
 #ifndef GEOMETRY_MSGS__MSG__WRENCH_H_

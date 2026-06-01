@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from example_interfaces:srv/SetBool.idl
+// with input from example_interfaces:srv\SetBool.idl
 // generated code does not contain a copyright notice
 
 #ifndef EXAMPLE_INTERFACES__SRV__SET_BOOL_H_

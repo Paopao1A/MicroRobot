@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from nav_msgs:srv/GetPlan.idl
+// with input from nav_msgs:srv\GetPlan.idl
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__SRV__DETAIL__GET_PLAN__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

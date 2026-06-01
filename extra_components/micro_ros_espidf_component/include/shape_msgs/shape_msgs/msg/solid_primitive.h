@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from shape_msgs:msg/SolidPrimitive.idl
+// with input from shape_msgs:msg\SolidPrimitive.idl
 // generated code does not contain a copyright notice
 
 #ifndef SHAPE_MSGS__MSG__SOLID_PRIMITIVE_H_

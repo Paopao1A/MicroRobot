@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from rcl_interfaces:srv/SetParametersAtomically.idl
+// with input from rcl_interfaces:srv\SetParametersAtomically.idl
 // generated code does not contain a copyright notice
 #include "rcl_interfaces/srv/detail/set_parameters_atomically__functions.h"
 

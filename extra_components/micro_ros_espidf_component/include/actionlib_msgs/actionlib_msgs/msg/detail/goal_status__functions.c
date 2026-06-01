@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from actionlib_msgs:msg/GoalStatus.idl
+// with input from actionlib_msgs:msg\GoalStatus.idl
 // generated code does not contain a copyright notice
 #include "actionlib_msgs/msg/detail/goal_status__functions.h"
 

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from composition_interfaces:srv/UnloadNode.idl
+// with input from composition_interfaces:srv\UnloadNode.idl
 // generated code does not contain a copyright notice
 
 #ifndef COMPOSITION_INTERFACES__SRV__UNLOAD_NODE_H_

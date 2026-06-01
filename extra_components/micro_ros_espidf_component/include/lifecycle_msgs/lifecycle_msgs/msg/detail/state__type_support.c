@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__type_support.c.em
-// with input from lifecycle_msgs:msg/State.idl
+// with input from lifecycle_msgs:msg\State.idl
 // generated code does not contain a copyright notice
 
 #include <stddef.h>

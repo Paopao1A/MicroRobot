@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from nav_msgs:srv/LoadMap.idl
+// with input from nav_msgs:srv\LoadMap.idl
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__SRV__DETAIL__LOAD_MAP__TYPE_SUPPORT_H_

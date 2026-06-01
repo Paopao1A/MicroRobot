@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from sensor_msgs:srv/SetCameraInfo.idl
+// with input from sensor_msgs:srv\SetCameraInfo.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__SRV__SET_CAMERA_INFO_H_

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from shape_msgs:msg/MeshTriangle.idl
+// with input from shape_msgs:msg\MeshTriangle.idl
 // generated code does not contain a copyright notice
 #include "shape_msgs/msg/detail/mesh_triangle__functions.h"
 

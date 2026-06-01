@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from unique_identifier_msgs:msg/UUID.idl
+// with input from unique_identifier_msgs:msg\UUID.idl
 // generated code does not contain a copyright notice
 
 #ifndef UNIQUE_IDENTIFIER_MSGS__MSG__DETAIL__UUID__TYPE_SUPPORT_H_

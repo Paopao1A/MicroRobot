@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from test_msgs:msg/WStrings.idl
+// with input from test_msgs:msg\WStrings.idl
 // generated code does not contain a copyright notice
 
 #ifndef TEST_MSGS__MSG__DETAIL__W_STRINGS__TYPE_SUPPORT_H_

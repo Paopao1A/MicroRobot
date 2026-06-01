@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from lifecycle_msgs:srv/GetAvailableStates.idl
+// with input from lifecycle_msgs:srv\GetAvailableStates.idl
 // generated code does not contain a copyright notice
 #include "lifecycle_msgs/srv/detail/get_available_states__functions.h"
 

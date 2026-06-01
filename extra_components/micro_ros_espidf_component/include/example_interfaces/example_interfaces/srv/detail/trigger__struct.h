@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from example_interfaces:srv/Trigger.idl
+// with input from example_interfaces:srv\Trigger.idl
 // generated code does not contain a copyright notice
 
 #ifndef EXAMPLE_INTERFACES__SRV__DETAIL__TRIGGER__STRUCT_H_

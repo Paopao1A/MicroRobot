@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from sensor_msgs:msg/PointCloud.idl
+// with input from sensor_msgs:msg\PointCloud.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__POINT_CLOUD__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

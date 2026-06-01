@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from micro_ros_msgs:msg/Entity.idl
+// with input from micro_ros_msgs:msg\Entity.idl
 // generated code does not contain a copyright notice
 
 #ifndef MICRO_ROS_MSGS__MSG__DETAIL__ENTITY__TYPE_SUPPORT_H_

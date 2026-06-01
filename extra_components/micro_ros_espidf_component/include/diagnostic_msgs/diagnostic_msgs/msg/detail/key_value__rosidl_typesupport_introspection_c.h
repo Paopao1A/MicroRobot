@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from diagnostic_msgs:msg/KeyValue.idl
+// with input from diagnostic_msgs:msg\KeyValue.idl
 // generated code does not contain a copyright notice
 
 #ifndef DIAGNOSTIC_MSGS__MSG__DETAIL__KEY_VALUE__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

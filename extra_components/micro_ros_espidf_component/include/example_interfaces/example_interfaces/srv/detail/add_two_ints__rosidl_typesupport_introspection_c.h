@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from example_interfaces:srv/AddTwoInts.idl
+// with input from example_interfaces:srv\AddTwoInts.idl
 // generated code does not contain a copyright notice
 
 #ifndef EXAMPLE_INTERFACES__SRV__DETAIL__ADD_TWO_INTS__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

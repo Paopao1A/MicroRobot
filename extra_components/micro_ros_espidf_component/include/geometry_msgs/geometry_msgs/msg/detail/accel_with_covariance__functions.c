@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from geometry_msgs:msg/AccelWithCovariance.idl
+// with input from geometry_msgs:msg\AccelWithCovariance.idl
 // generated code does not contain a copyright notice
 #include "geometry_msgs/msg/detail/accel_with_covariance__functions.h"
 

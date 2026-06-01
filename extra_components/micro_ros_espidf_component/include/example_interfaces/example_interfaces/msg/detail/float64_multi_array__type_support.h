@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from example_interfaces:msg/Float64MultiArray.idl
+// with input from example_interfaces:msg\Float64MultiArray.idl
 // generated code does not contain a copyright notice
 
 #ifndef EXAMPLE_INTERFACES__MSG__DETAIL__FLOAT64_MULTI_ARRAY__TYPE_SUPPORT_H_

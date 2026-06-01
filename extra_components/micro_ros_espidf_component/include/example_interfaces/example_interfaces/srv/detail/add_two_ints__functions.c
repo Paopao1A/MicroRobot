@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from example_interfaces:srv/AddTwoInts.idl
+// with input from example_interfaces:srv\AddTwoInts.idl
 // generated code does not contain a copyright notice
 #include "example_interfaces/srv/detail/add_two_ints__functions.h"
 

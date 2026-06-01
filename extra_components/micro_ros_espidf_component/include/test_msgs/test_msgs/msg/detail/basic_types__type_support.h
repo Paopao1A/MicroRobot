@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from test_msgs:msg/BasicTypes.idl
+// with input from test_msgs:msg\BasicTypes.idl
 // generated code does not contain a copyright notice
 
 #ifndef TEST_MSGS__MSG__DETAIL__BASIC_TYPES__TYPE_SUPPORT_H_

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from geometry_msgs:msg/TwistWithCovarianceStamped.idl
+// with input from geometry_msgs:msg\TwistWithCovarianceStamped.idl
 // generated code does not contain a copyright notice
 
 #ifndef GEOMETRY_MSGS__MSG__DETAIL__TWIST_WITH_COVARIANCE_STAMPED__STRUCT_H_

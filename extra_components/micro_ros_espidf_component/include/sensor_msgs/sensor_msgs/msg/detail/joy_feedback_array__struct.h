@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from sensor_msgs:msg/JoyFeedbackArray.idl
+// with input from sensor_msgs:msg\JoyFeedbackArray.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__JOY_FEEDBACK_ARRAY__STRUCT_H_

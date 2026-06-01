@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from nav_msgs:srv/GetPlan.idl
+// with input from nav_msgs:srv\GetPlan.idl
 // generated code does not contain a copyright notice
 #include "nav_msgs/srv/detail/get_plan__functions.h"
 

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from composition_interfaces:srv/LoadNode.idl
+// with input from composition_interfaces:srv\LoadNode.idl
 // generated code does not contain a copyright notice
 #include "composition_interfaces/srv/detail/load_node__functions.h"
 

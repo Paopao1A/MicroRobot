@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from test_msgs:action/Fibonacci.idl
+// with input from test_msgs:action\Fibonacci.idl
 // generated code does not contain a copyright notice
 
 #ifndef TEST_MSGS__ACTION__FIBONACCI_H_

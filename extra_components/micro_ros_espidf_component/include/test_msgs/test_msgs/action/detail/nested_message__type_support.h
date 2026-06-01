@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from test_msgs:action/NestedMessage.idl
+// with input from test_msgs:action\NestedMessage.idl
 // generated code does not contain a copyright notice
 
 #ifndef TEST_MSGS__ACTION__DETAIL__NESTED_MESSAGE__TYPE_SUPPORT_H_

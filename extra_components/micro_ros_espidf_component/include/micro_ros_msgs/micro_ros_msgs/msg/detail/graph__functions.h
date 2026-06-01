@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.h.em
-// with input from micro_ros_msgs:msg/Graph.idl
+// with input from micro_ros_msgs:msg\Graph.idl
 // generated code does not contain a copyright notice
 
 #ifndef MICRO_ROS_MSGS__MSG__DETAIL__GRAPH__FUNCTIONS_H_

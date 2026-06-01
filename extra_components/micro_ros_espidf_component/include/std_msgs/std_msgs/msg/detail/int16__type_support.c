@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__type_support.c.em
-// with input from std_msgs:msg/Int16.idl
+// with input from std_msgs:msg\Int16.idl
 // generated code does not contain a copyright notice
 
 #include <stddef.h>

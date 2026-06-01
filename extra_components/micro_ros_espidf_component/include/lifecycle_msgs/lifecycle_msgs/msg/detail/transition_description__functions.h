@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.h.em
-// with input from lifecycle_msgs:msg/TransitionDescription.idl
+// with input from lifecycle_msgs:msg\TransitionDescription.idl
 // generated code does not contain a copyright notice
 
 #ifndef LIFECYCLE_MSGS__MSG__DETAIL__TRANSITION_DESCRIPTION__FUNCTIONS_H_

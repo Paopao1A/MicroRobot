@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from test_msgs:msg/UnboundedSequences.idl
+// with input from test_msgs:msg\UnboundedSequences.idl
 // generated code does not contain a copyright notice
 #include "test_msgs/msg/detail/unbounded_sequences__functions.h"
 

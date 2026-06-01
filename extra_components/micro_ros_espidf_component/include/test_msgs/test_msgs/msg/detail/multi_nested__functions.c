@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from test_msgs:msg/MultiNested.idl
+// with input from test_msgs:msg\MultiNested.idl
 // generated code does not contain a copyright notice
 #include "test_msgs/msg/detail/multi_nested__functions.h"
 

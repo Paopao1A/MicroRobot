@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.h.em
-// with input from diagnostic_msgs:msg/DiagnosticArray.idl
+// with input from diagnostic_msgs:msg\DiagnosticArray.idl
 // generated code does not contain a copyright notice
 
 #ifndef DIAGNOSTIC_MSGS__MSG__DETAIL__DIAGNOSTIC_ARRAY__FUNCTIONS_H_

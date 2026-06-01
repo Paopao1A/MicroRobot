@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from example_interfaces:msg/UInt16MultiArray.idl
+// with input from example_interfaces:msg\UInt16MultiArray.idl
 // generated code does not contain a copyright notice
 
 #ifndef EXAMPLE_INTERFACES__MSG__DETAIL__U_INT16_MULTI_ARRAY__TYPE_SUPPORT_H_

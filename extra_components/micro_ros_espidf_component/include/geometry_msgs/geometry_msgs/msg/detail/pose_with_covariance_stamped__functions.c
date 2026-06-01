@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from geometry_msgs:msg/PoseWithCovarianceStamped.idl
+// with input from geometry_msgs:msg\PoseWithCovarianceStamped.idl
 // generated code does not contain a copyright notice
 #include "geometry_msgs/msg/detail/pose_with_covariance_stamped__functions.h"
 

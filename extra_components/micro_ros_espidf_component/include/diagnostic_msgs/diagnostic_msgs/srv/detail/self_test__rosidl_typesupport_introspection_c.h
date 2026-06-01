@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from diagnostic_msgs:srv/SelfTest.idl
+// with input from diagnostic_msgs:srv\SelfTest.idl
 // generated code does not contain a copyright notice
 
 #ifndef DIAGNOSTIC_MSGS__SRV__DETAIL__SELF_TEST__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

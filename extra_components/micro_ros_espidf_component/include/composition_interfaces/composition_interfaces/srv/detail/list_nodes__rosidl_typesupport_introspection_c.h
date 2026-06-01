@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from composition_interfaces:srv/ListNodes.idl
+// with input from composition_interfaces:srv\ListNodes.idl
 // generated code does not contain a copyright notice
 
 #ifndef COMPOSITION_INTERFACES__SRV__DETAIL__LIST_NODES__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

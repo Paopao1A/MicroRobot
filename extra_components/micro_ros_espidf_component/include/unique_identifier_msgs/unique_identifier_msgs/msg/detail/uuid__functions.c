@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from unique_identifier_msgs:msg/UUID.idl
+// with input from unique_identifier_msgs:msg\UUID.idl
 // generated code does not contain a copyright notice
 #include "unique_identifier_msgs/msg/detail/uuid__functions.h"
 

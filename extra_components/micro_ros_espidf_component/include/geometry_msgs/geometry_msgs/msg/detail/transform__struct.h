@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from geometry_msgs:msg/Transform.idl
+// with input from geometry_msgs:msg\Transform.idl
 // generated code does not contain a copyright notice
 
 #ifndef GEOMETRY_MSGS__MSG__DETAIL__TRANSFORM__STRUCT_H_

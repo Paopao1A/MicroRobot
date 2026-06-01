@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__type_support.c.em
-// with input from geometry_msgs:msg/Polygon.idl
+// with input from geometry_msgs:msg\Polygon.idl
 // generated code does not contain a copyright notice
 
 #include <stddef.h>

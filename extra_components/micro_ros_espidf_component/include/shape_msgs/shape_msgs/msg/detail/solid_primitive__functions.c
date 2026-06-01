@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from shape_msgs:msg/SolidPrimitive.idl
+// with input from shape_msgs:msg\SolidPrimitive.idl
 // generated code does not contain a copyright notice
 #include "shape_msgs/msg/detail/solid_primitive__functions.h"
 

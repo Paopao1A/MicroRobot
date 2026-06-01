@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from rcl_interfaces:msg/ParameterType.idl
+// with input from rcl_interfaces:msg\ParameterType.idl
 // generated code does not contain a copyright notice
 
 #ifndef RCL_INTERFACES__MSG__DETAIL__PARAMETER_TYPE__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from std_msgs:msg/Int16MultiArray.idl
+// with input from std_msgs:msg\Int16MultiArray.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__DETAIL__INT16_MULTI_ARRAY__STRUCT_H_

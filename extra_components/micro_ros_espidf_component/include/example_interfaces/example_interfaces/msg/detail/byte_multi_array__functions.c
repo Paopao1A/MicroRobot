@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from example_interfaces:msg/ByteMultiArray.idl
+// with input from example_interfaces:msg\ByteMultiArray.idl
 // generated code does not contain a copyright notice
 #include "example_interfaces/msg/detail/byte_multi_array__functions.h"
 

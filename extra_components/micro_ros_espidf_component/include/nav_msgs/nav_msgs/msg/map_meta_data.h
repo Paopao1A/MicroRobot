@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from nav_msgs:msg/MapMetaData.idl
+// with input from nav_msgs:msg\MapMetaData.idl
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__MSG__MAP_META_DATA_H_

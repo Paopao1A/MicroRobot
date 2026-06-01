@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from rosgraph_msgs:msg/Clock.idl
+// with input from rosgraph_msgs:msg\Clock.idl
 // generated code does not contain a copyright notice
 
 #ifndef ROSGRAPH_MSGS__MSG__CLOCK_H_

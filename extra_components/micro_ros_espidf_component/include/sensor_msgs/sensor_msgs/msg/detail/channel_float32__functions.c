@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from sensor_msgs:msg/ChannelFloat32.idl
+// with input from sensor_msgs:msg\ChannelFloat32.idl
 // generated code does not contain a copyright notice
 #include "sensor_msgs/msg/detail/channel_float32__functions.h"
 

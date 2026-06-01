@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from lifecycle_msgs:srv/ChangeState.idl
+// with input from lifecycle_msgs:srv\ChangeState.idl
 // generated code does not contain a copyright notice
 
 #ifndef LIFECYCLE_MSGS__SRV__DETAIL__CHANGE_STATE__TYPE_SUPPORT_H_

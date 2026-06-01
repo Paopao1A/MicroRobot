@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from action_msgs:srv/CancelGoal.idl
+// with input from action_msgs:srv\CancelGoal.idl
 // generated code does not contain a copyright notice
 
 #ifndef ACTION_MSGS__SRV__DETAIL__CANCEL_GOAL__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

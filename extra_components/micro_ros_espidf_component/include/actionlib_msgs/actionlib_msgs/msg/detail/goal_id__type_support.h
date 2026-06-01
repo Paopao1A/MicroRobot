@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from actionlib_msgs:msg/GoalID.idl
+// with input from actionlib_msgs:msg\GoalID.idl
 // generated code does not contain a copyright notice
 
 #ifndef ACTIONLIB_MSGS__MSG__DETAIL__GOAL_ID__TYPE_SUPPORT_H_

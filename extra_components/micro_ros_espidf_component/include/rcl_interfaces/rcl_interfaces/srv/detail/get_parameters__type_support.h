@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from rcl_interfaces:srv/GetParameters.idl
+// with input from rcl_interfaces:srv\GetParameters.idl
 // generated code does not contain a copyright notice
 
 #ifndef RCL_INTERFACES__SRV__DETAIL__GET_PARAMETERS__TYPE_SUPPORT_H_

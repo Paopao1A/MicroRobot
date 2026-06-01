@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from test_msgs:msg/Arrays.idl
+// with input from test_msgs:msg\Arrays.idl
 // generated code does not contain a copyright notice
 #include "test_msgs/msg/detail/arrays__functions.h"
 

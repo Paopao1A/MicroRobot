@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__type_support.c.em
-// with input from micro_ros_msgs:msg/Entity.idl
+// with input from micro_ros_msgs:msg\Entity.idl
 // generated code does not contain a copyright notice
 
 #include <stddef.h>

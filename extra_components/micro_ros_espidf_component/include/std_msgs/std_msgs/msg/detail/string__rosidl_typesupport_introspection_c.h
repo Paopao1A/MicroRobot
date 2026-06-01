@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from std_msgs:msg/String.idl
+// with input from std_msgs:msg\String.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__DETAIL__STRING__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from geometry_msgs:msg/Inertia.idl
+// with input from geometry_msgs:msg\Inertia.idl
 // generated code does not contain a copyright notice
 
 #ifndef GEOMETRY_MSGS__MSG__DETAIL__INERTIA__STRUCT_H_
@@ -30,7 +30,7 @@ typedef struct geometry_msgs__msg__Inertia
   double m;
   /// Center of mass
   geometry_msgs__msg__Vector3 com;
-  /// Inertia Tensor
+  /// Inertia Tensor about the center of mass
   ///     | ixx ixy ixz |
   /// I = | ixy iyy iyz |
   ///     | ixz iyz izz |

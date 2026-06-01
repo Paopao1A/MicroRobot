@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from action_msgs:srv/CancelGoal.idl
+// with input from action_msgs:srv\CancelGoal.idl
 // generated code does not contain a copyright notice
 #include "action_msgs/srv/detail/cancel_goal__functions.h"
 

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from shape_msgs:msg/Mesh.idl
+// with input from shape_msgs:msg\Mesh.idl
 // generated code does not contain a copyright notice
 
 #ifndef SHAPE_MSGS__MSG__DETAIL__MESH__TYPE_SUPPORT_H_

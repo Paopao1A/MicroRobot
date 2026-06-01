@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from std_msgs:msg/UInt8MultiArray.idl
+// with input from std_msgs:msg\UInt8MultiArray.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__DETAIL__U_INT8_MULTI_ARRAY__TYPE_SUPPORT_H_

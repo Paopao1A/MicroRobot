@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from std_msgs:msg/Float64MultiArray.idl
+// with input from std_msgs:msg\Float64MultiArray.idl
 // generated code does not contain a copyright notice
 #include "std_msgs/msg/detail/float64_multi_array__functions.h"
 

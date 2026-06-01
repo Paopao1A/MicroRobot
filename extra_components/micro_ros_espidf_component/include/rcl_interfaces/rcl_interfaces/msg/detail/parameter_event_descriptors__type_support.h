@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from rcl_interfaces:msg/ParameterEventDescriptors.idl
+// with input from rcl_interfaces:msg\ParameterEventDescriptors.idl
 // generated code does not contain a copyright notice
 
 #ifndef RCL_INTERFACES__MSG__DETAIL__PARAMETER_EVENT_DESCRIPTORS__TYPE_SUPPORT_H_

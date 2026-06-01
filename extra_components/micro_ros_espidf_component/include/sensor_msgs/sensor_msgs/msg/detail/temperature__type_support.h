@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from sensor_msgs:msg/Temperature.idl
+// with input from sensor_msgs:msg\Temperature.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__TEMPERATURE__TYPE_SUPPORT_H_

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.h.em
-// with input from std_msgs:msg/MultiArrayLayout.idl
+// with input from std_msgs:msg\MultiArrayLayout.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__DETAIL__MULTI_ARRAY_LAYOUT__FUNCTIONS_H_

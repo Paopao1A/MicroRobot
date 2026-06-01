@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from builtin_interfaces:msg/Time.idl
+// with input from builtin_interfaces:msg\Time.idl
 // generated code does not contain a copyright notice
 
 #ifndef BUILTIN_INTERFACES__MSG__DETAIL__TIME__STRUCT_H_
@@ -26,7 +26,10 @@ typedef struct builtin_interfaces__msg__Time
 {
   /// The seconds component, valid over all int32 values.
   int32_t sec;
-  /// The nanoseconds component, valid in the range [0, 10e9).
+  /// The nanoseconds component, valid in the range [0, 1e9), to be added to the seconds component.
+  /// e.g.
+  /// The time -1.7 seconds is represented as {sec: -2, nanosec: 3e8}
+  /// The time 1.7 seconds is represented as {sec: 1, nanosec: 7e8}
   uint32_t nanosec;
 } builtin_interfaces__msg__Time;
 

@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from std_msgs:msg/MultiArrayDimension.idl
+// with input from std_msgs:msg\MultiArrayDimension.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__DETAIL__MULTI_ARRAY_DIMENSION__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

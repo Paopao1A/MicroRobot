@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from sensor_msgs:msg/PointCloud.idl
+// with input from sensor_msgs:msg\PointCloud.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__POINT_CLOUD__STRUCT_H_

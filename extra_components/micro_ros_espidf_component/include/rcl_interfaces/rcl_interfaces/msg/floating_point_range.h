@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl.h.em
-// with input from rcl_interfaces:msg/FloatingPointRange.idl
+// with input from rcl_interfaces:msg\FloatingPointRange.idl
 // generated code does not contain a copyright notice
 
 #ifndef RCL_INTERFACES__MSG__FLOATING_POINT_RANGE_H_

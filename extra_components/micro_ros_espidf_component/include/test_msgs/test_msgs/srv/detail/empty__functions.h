@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.h.em
-// with input from test_msgs:srv/Empty.idl
+// with input from test_msgs:srv\Empty.idl
 // generated code does not contain a copyright notice
 
 #ifndef TEST_MSGS__SRV__DETAIL__EMPTY__FUNCTIONS_H_

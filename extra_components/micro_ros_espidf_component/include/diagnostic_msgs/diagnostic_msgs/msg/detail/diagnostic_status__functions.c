@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from diagnostic_msgs:msg/DiagnosticStatus.idl
+// with input from diagnostic_msgs:msg\DiagnosticStatus.idl
 // generated code does not contain a copyright notice
 #include "diagnostic_msgs/msg/detail/diagnostic_status__functions.h"
 

@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from rcl_interfaces:msg/SetParametersResult.idl
+// with input from rcl_interfaces:msg\SetParametersResult.idl
 // generated code does not contain a copyright notice
 
 #ifndef RCL_INTERFACES__MSG__DETAIL__SET_PARAMETERS_RESULT__STRUCT_H_

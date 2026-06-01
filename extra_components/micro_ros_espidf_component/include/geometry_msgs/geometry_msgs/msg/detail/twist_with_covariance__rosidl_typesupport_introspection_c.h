@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from geometry_msgs:msg/TwistWithCovariance.idl
+// with input from geometry_msgs:msg\TwistWithCovariance.idl
 // generated code does not contain a copyright notice
 
 #ifndef GEOMETRY_MSGS__MSG__DETAIL__TWIST_WITH_COVARIANCE__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

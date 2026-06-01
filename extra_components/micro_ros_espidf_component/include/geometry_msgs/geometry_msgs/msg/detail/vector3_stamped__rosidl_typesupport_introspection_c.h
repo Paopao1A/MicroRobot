@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from geometry_msgs:msg/Vector3Stamped.idl
+// with input from geometry_msgs:msg\Vector3Stamped.idl
 // generated code does not contain a copyright notice
 
 #ifndef GEOMETRY_MSGS__MSG__DETAIL__VECTOR3_STAMPED__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

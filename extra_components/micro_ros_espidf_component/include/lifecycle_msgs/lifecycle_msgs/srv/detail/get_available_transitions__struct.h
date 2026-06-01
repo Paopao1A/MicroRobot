@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from lifecycle_msgs:srv/GetAvailableTransitions.idl
+// with input from lifecycle_msgs:srv\GetAvailableTransitions.idl
 // generated code does not contain a copyright notice
 
 #ifndef LIFECYCLE_MSGS__SRV__DETAIL__GET_AVAILABLE_TRANSITIONS__STRUCT_H_

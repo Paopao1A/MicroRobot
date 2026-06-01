@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.h.em
-// with input from sensor_msgs:msg/RegionOfInterest.idl
+// with input from sensor_msgs:msg\RegionOfInterest.idl
 // generated code does not contain a copyright notice
 
 #ifndef SENSOR_MSGS__MSG__DETAIL__REGION_OF_INTEREST__FUNCTIONS_H_

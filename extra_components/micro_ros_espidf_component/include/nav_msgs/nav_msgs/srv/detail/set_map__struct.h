@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__struct.h.em
-// with input from nav_msgs:srv/SetMap.idl
+// with input from nav_msgs:srv\SetMap.idl
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__SRV__DETAIL__SET_MAP__STRUCT_H_

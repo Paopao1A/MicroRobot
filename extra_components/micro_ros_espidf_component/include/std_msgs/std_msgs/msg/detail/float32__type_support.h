@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from std_msgs:msg/Float32.idl
+// with input from std_msgs:msg\Float32.idl
 // generated code does not contain a copyright notice
 
 #ifndef STD_MSGS__MSG__DETAIL__FLOAT32__TYPE_SUPPORT_H_

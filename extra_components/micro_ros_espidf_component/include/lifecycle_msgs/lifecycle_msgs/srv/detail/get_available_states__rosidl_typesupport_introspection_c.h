@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from lifecycle_msgs:srv/GetAvailableStates.idl
+// with input from lifecycle_msgs:srv\GetAvailableStates.idl
 // generated code does not contain a copyright notice
 
 #ifndef LIFECYCLE_MSGS__SRV__DETAIL__GET_AVAILABLE_STATES__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from nav_msgs:srv/LoadMap.idl
+// with input from nav_msgs:srv\LoadMap.idl
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__SRV__DETAIL__LOAD_MAP__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

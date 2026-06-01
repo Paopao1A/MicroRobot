@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__functions.c.em
-// with input from sensor_msgs:msg/RelativeHumidity.idl
+// with input from sensor_msgs:msg\RelativeHumidity.idl
 // generated code does not contain a copyright notice
 #include "sensor_msgs/msg/detail/relative_humidity__functions.h"
 

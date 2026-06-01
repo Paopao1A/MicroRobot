@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from diagnostic_msgs:srv/SelfTest.idl
+// with input from diagnostic_msgs:srv\SelfTest.idl
 // generated code does not contain a copyright notice
 
 #ifndef DIAGNOSTIC_MSGS__SRV__DETAIL__SELF_TEST__TYPE_SUPPORT_H_

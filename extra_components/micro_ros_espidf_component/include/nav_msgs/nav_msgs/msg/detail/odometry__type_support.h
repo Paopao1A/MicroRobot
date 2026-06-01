@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from nav_msgs:msg/Odometry.idl
+// with input from nav_msgs:msg\Odometry.idl
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__MSG__DETAIL__ODOMETRY__TYPE_SUPPORT_H_

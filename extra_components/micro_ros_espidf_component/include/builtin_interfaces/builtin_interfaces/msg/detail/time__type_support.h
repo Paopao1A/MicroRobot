@@ -1,5 +1,5 @@
 // generated from rosidl_generator_c/resource/idl__type_support.h.em
-// with input from builtin_interfaces:msg/Time.idl
+// with input from builtin_interfaces:msg\Time.idl
 // generated code does not contain a copyright notice
 
 #ifndef BUILTIN_INTERFACES__MSG__DETAIL__TIME__TYPE_SUPPORT_H_

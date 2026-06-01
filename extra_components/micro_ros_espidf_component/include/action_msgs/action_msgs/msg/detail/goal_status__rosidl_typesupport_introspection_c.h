@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from action_msgs:msg/GoalStatus.idl
+// with input from action_msgs:msg\GoalStatus.idl
 // generated code does not contain a copyright notice
 
 #ifndef ACTION_MSGS__MSG__DETAIL__GOAL_STATUS__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_

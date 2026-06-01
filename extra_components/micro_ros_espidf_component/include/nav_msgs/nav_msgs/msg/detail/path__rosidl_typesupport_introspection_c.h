@@ -1,5 +1,5 @@
 // generated from rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em
-// with input from nav_msgs:msg/Path.idl
+// with input from nav_msgs:msg\Path.idl
 // generated code does not contain a copyright notice
 
 #ifndef NAV_MSGS__MSG__DETAIL__PATH__ROSIDL_TYPESUPPORT_INTROSPECTION_C_H_
