@@ -5,11 +5,13 @@
 #include "Task_MotionControl.h"
 #include "Task_Odometry.h"
 #include "Task_LedControl.h"
+#include "Task_ServoControl.h"
 void Task_Init(void)
 {
     Task_IMU_Init();
     Task_Lidar_Init();
     Task_MotionControl_Init();
+    Task_ServoControl_Init();
     Task_Odometry_Init();
     Task_BeepControl_Init();
     Task_LedControl_Init();

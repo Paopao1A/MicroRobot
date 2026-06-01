@@ -44,12 +44,15 @@ set(src_dirs
             App/App_Publisher_Imu
             App/App_Publisher_LaserScan
             App/App_Publisher_Odom
+            App/App_Publisher_ServoState
+            App/App_Subscriber_Servo
             App/App_Subscriber_Twist
             App/App_Bluetooth
             Task/Task_Init
             Task/Task_IMU
             Task/Task_Lidar
             Task/Task_MotionControl
+            Task/Task_ServoControl
             Task/Task_Odometry
             Task/Task_LedControl
             Task/Task_BeepControl)
@@ -102,12 +105,15 @@ set(include_dirs
             App/App_Publisher_Imu
             App/App_Publisher_LaserScan
             App/App_Publisher_Odom
+            App/App_Publisher_ServoState
+            App/App_Subscriber_Servo
             App/App_Subscriber_Twist
             App/App_Bluetooth
             Task/Task_Init
             Task/Task_IMU
             Task/Task_Lidar
             Task/Task_MotionControl
+            Task/Task_ServoControl
             Task/Task_Odometry
             Task/Task_LedControl
             Task/Task_BeepControl)

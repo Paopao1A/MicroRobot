@@ -14,6 +14,8 @@
 #include "App_Publisher_Imu.h"
 #include "App_Publisher_LaserScan.h"
 #include "App_Publisher_Odom.h"
+#include "App_Publisher_ServoState.h"
+#include "App_Subscriber_Servo.h"
 #include "App_Subscriber_Twist.h"
 #include "WIFI.h"
 
@@ -33,22 +35,22 @@
 #define CONFIG_MICRO_ROS_NAMESPACE ""
 #endif
 
-#define RCCHECK(fn)                                                              \
-    do                                                                           \
-    {                                                                            \
-        rcl_ret_t temp_rc = (fn);                                                \
-        if (temp_rc != RCL_RET_OK)                                               \
-        {                                                                        \
-            printf("micro-ROS failed on line %d: %d\n", __LINE__, (int)temp_rc); \
-            vTaskDelete(NULL);                                                   \
-        }                                                                        \
+#define RCCHECK(fn)                                                                             \
+    do                                                                                          \
+    {                                                                                           \
+        rcl_ret_t temp_rc = (fn);                                                               \
+        if (temp_rc != RCL_RET_OK)                                                              \
+        {                                                                                       \
+            printf("micro-ROS failed: %s line %d ret %d\n", #fn, __LINE__, (int)temp_rc);       \
+            vTaskDelete(NULL);                                                                  \
+        }                                                                                       \
     } while (0)
 
 #define ROS_NAMESPACE  CONFIG_MICRO_ROS_NAMESPACE
 #define ROS_DOMAIN_ID  CONFIG_MICRO_ROS_DOMAIN_ID
 #define ROS_AGENT_IP   CONFIG_MICRO_ROS_AGENT_IP
 #define ROS_AGENT_PORT CONFIG_MICRO_ROS_AGENT_PORT
-#define APP_MICRO_ROS_EXECUTOR_HANDLE_NUM (APP_SUBSCRIBER_TWIST_HANDLE_NUM + APP_PUBLISHER_ODOM_HANDLE_NUM + APP_PUBLISHER_IMU_HANDLE_NUM + APP_PUBLISHER_LASER_SCAN_HANDLE_NUM)
+#define APP_MICRO_ROS_EXECUTOR_HANDLE_NUM (APP_SUBSCRIBER_TWIST_HANDLE_NUM + APP_SUBSCRIBER_SERVO_HANDLE_NUM + APP_PUBLISHER_ODOM_HANDLE_NUM + APP_PUBLISHER_IMU_HANDLE_NUM + APP_PUBLISHER_LASER_SCAN_HANDLE_NUM + APP_PUBLISHER_SERVO_STATE_HANDLE_NUM)
 
 static const char *TAG = "App_Init";
 static TaskHandle_t s_micro_ros_task_handle = NULL;
@@ -96,6 +98,7 @@ static void App_MicroRosTask(void *arg)
                                
     //初始化订阅者
     RCCHECK(App_Subscriber_Twist_Init(&node, &executor));
+    RCCHECK(App_Subscriber_Servo_Init(&node, &executor));
     ESP_LOGI(TAG, "micro-ROS subscribers initialized");
 
     //初始化发布者
@@ -107,6 +110,9 @@ static void App_MicroRosTask(void *arg)
 
     RCCHECK(App_Publisher_LaserScan_Init(&node, &executor, &support));
     ESP_LOGI(TAG, "micro-ROS laser scan publisher initialized");
+
+    RCCHECK(App_Publisher_ServoState_Init(&node, &executor, &support));
+    ESP_LOGI(TAG, "micro-ROS servo state publisher initialized");
 
     //循环处理ROS事件
     while (1)
