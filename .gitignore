@@ -12,6 +12,8 @@
 *.swo
 *.bak
 *.tmp
+.codex_tmp/
+codex_tmp_*.py
 
 # Log files
 *.log

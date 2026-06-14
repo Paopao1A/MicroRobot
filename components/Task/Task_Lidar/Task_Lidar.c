@@ -56,9 +56,6 @@ void Task_Lidar_GetScan(Task_Lidar_Scan_t *Scan)
 
 static void Task_Lidar_UpdateSnapshot(void)
 {
-    LIDAR_Scan_t LidarScan = {0};
-
-    LIDAR_GetScan(&LidarScan);//获取当前扫描数据
     if (s_Lidar_Mutex == NULL)
     {
         return;
@@ -66,7 +63,7 @@ static void Task_Lidar_UpdateSnapshot(void)
 
     if (xSemaphoreTake(s_Lidar_Mutex, portMAX_DELAY) == pdTRUE)//互斥锁保护
     {
-        s_Lidar_Scan.Scan = LidarScan;
+        LIDAR_GetScan(&s_Lidar_Scan.Scan);//获取当前扫描数据
         s_Lidar_Scan.Is_Valid = true;
         s_Lidar_Scan.Tick_Ms = (uint32_t)(xTaskGetTickCount() * portTICK_PERIOD_MS);
         s_Lidar_Scan.Update_Count++;
